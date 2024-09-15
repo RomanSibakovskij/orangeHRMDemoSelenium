@@ -18,12 +18,18 @@ public class AdminLoginPage extends BasePage{
     //login button web element
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement loginButton;
+    //invalid credentials alert text web element
+    @FindBy(css= ".oxd-alert--error")
+    private WebElement invalidCredentialsMessage;
+    //input fields error text web elements
+    @FindBy(xpath = "//span[.='Required']")
+    private WebElement inputRequiredText;
 
     public AdminLoginPage(WebDriver driver) {
         super(driver);
     }
 
-    //admin user data input methods
+    // valid admin user data input methods
     public void inputAdminUsername(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
         wait.until(ExpectedConditions.visibilityOf(usernameInputField));
@@ -36,6 +42,33 @@ public class AdminLoginPage extends BasePage{
         passwordInputField.sendKeys("admin123");
     }
 
+    //invalid admin user data input - no singular input
+    public void inputNoAdminUsername(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.visibilityOf(usernameInputField));
+        usernameInputField.sendKeys("");
+    }
+
+    public void inputNoAdminPassword(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.visibilityOf(passwordInputField));
+        passwordInputField.sendKeys("");
+    }
+
+    //invalid admin user data input - invalid singular input
+    public void inputInvalidAdminUsername(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.visibilityOf(usernameInputField));
+        usernameInputField.sendKeys("toker");
+    }
+
+    public void inputInvalidAdminPassword(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.visibilityOf(passwordInputField));
+        passwordInputField.sendKeys("admin");
+    }
+
+    //submit button click method
     public void clickLoginButton(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
         wait.until(ExpectedConditions.elementToBeClickable(loginButton));
@@ -46,4 +79,8 @@ public class AdminLoginPage extends BasePage{
     public boolean isUsernameInputFieldDisplayed(){return usernameInputField.isDisplayed();}
     public boolean isPasswordInputFieldDisplayed(){return passwordInputField.isDisplayed();}
     public boolean isLoginButtonDisplayed(){return loginButton.isDisplayed();}
+
+    //invalid message getters
+    public String getRequiredInputText(){return inputRequiredText.getText();}
+    public String getInvalidCredentialsMessage(){return invalidCredentialsMessage.getText();}
 }
