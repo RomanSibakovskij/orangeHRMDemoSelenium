@@ -104,6 +104,15 @@ public class TestMethods extends BaseTest{
 //        assertTrue(adminLoginPage.isLoginLogoDisplayed(), "The login logo is not displayed"); -> NoSuchElementException with CORRECT selector - it can be found on browser dev console
     }
 
+    //admin change password test method
+    protected void changeAdminPasswordTest(){
+        AdminDashBoardPage adminDashBoardPage = new AdminDashBoardPage(driver);
+        //click admin dropdown menu
+        adminDashBoardPage.clickAdminDropdownMenu();
+        //click 'change password' link
+        adminDashBoardPage.clickChangePasswordLink();
+    }
+
     //admin dashboard web element assert
     protected void isAdminDashboardPageWebElementDisplayed(AdminDashBoardPage adminDashBoardPage){
         //assert admin dropdown menu is displayed

@@ -15,6 +15,8 @@ public class AdminDashBoardPage extends BasePage{
     //admin dropdown menu web element
     @FindBy(xpath = "//ul/li[@class='oxd-userdropdown']")
     private WebElement adminDropdownMenu;
+    @FindBy(xpath = "//ul[@class='oxd-dropdown-menu']/li[3]")
+    private WebElement adminChangePasswordLink;
     @FindBy(xpath = "//ul[@class='oxd-dropdown-menu']/li[4]")
     private WebElement adminLogoutLink;
 
@@ -28,6 +30,12 @@ public class AdminDashBoardPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
         wait.until(ExpectedConditions.elementToBeClickable(adminDropdownMenu));
         adminDropdownMenu.click();
+    }
+    //admin change password link click
+    public void clickChangePasswordLink(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.elementToBeClickable(adminChangePasswordLink));
+        adminChangePasswordLink.click();
     }
     //admin logout link click method
     public void clickLogoutLink(){
