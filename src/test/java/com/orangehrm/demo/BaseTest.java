@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import java.time.Duration;
 
 public class BaseTest {
     protected WebDriver driver;
@@ -17,6 +18,7 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));//due to the page slow load time
     }
 
     @AfterEach

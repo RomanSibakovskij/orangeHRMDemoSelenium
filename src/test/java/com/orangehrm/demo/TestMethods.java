@@ -104,19 +104,39 @@ public class TestMethods extends BaseTest{
 //        assertTrue(adminLoginPage.isLoginLogoDisplayed(), "The login logo is not displayed"); -> NoSuchElementException with CORRECT selector - it can be found on browser dev console
     }
 
+    //admin dashboard web element assert
+    protected void isAdminDashboardPageWebElementDisplayed(AdminDashBoardPage adminDashBoardPage){
+        //assert admin dropdown menu is displayed
+        assertTrue(adminDashBoardPage.isAdminDropdownMenuDisplayed(), "The admin dropdown menu is not displayed");
+    }
+
     //admin change password test method
-    protected void changeAdminPasswordTest(){
+    protected void changeAdminPasswordTest(AdminChangePasswordPage adminChangePasswordPage){
         AdminDashBoardPage adminDashBoardPage = new AdminDashBoardPage(driver);
         //click admin dropdown menu
         adminDashBoardPage.clickAdminDropdownMenu();
         //click 'change password' link
         adminDashBoardPage.clickChangePasswordLink();
+        //input old password
+        adminChangePasswordPage.enterOldPassword();
+        //assert web elements are displayed
+        isAdminChangePasswordPageWebElementDisplayed(adminChangePasswordPage);
+        //input new password
+        adminChangePasswordPage.enterNewPassword();
+        logger.info("New password entered: " + adminChangePasswordPage.getNewPassword());
+        //confirm new password
+        adminChangePasswordPage.confirmNewPassword();
+        logger.info("Confirm password entered: " + adminChangePasswordPage.getNewPassword());
     }
 
-    //admin dashboard web element assert
-    protected void isAdminDashboardPageWebElementDisplayed(AdminDashBoardPage adminDashBoardPage){
-        //assert admin dropdown menu is displayed
-        assertTrue(adminDashBoardPage.isAdminDropdownMenuDisplayed(), "The admin dropdown menu is not displayed");
+    //admin change password page web element assert
+    protected void isAdminChangePasswordPageWebElementDisplayed(AdminChangePasswordPage adminChangePasswordPage){
+        //assert old password input field is displayed
+        assertTrue(adminChangePasswordPage.isAdminOldPasswordInputFieldDisplayed(), "The old password input field isn't displayed");
+        //assert new password input field is displayed
+        assertTrue(adminChangePasswordPage.isAdminNewPasswordInputFieldDisplayed(), "The new password input field isn't displayed");
+        //assert confirm password input field is displayed
+        assertTrue(adminChangePasswordPage.isAdminConfirmPasswordInputFieldDisplayed(), "The confirm password input field isn't displayed");
     }
 
 }

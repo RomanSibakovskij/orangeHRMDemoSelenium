@@ -11,8 +11,8 @@ public class AdminDashboardPageTest extends TestMethods{
     void adminChangePasswordTest(){
         AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
         loginAsAdminTest(adminLoginPage);
-        AdminDashBoardPage adminDashBoardPage = new AdminDashBoardPage(driver);
-        changeAdminPasswordTest();
+        AdminChangePasswordPage adminChangePasswordPage = new AdminChangePasswordPage(driver);
+        changeAdminPasswordTest(adminChangePasswordPage);
     }
 
 }
