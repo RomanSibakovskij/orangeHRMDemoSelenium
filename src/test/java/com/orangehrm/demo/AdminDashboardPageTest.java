@@ -14,5 +14,5 @@ public class AdminDashboardPageTest extends TestMethods{
         AdminDashBoardPage adminDashBoardPage = new AdminDashBoardPage(driver);
         changeAdminPasswordTest();
     }
-    
+
 }
