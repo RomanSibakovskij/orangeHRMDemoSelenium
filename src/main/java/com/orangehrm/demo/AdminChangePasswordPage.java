@@ -10,11 +10,11 @@ import java.time.Duration;
 public class AdminChangePasswordPage extends BasePage{
 
     //admin change password input field web elements
-    @FindBy(xpath = "(//input[@class='oxd-input oxd-input--active'])[2]")
+    @FindBy(xpath = "(//input[@type='password'])[2]")
     private WebElement adminNewPasswordInputField;
-    @FindBy(xpath = "(//input[@class='oxd-input oxd-input--active'])[1]")
+    @FindBy(xpath = "(//input[@type='password'])[1]")
     private WebElement adminOldPasswordInputField;
-    @FindBy(xpath = "(//input[@class='oxd-input oxd-input--active'])[3]")
+    @FindBy(xpath = "(//input[@type='password'])[3]")
     private WebElement adminConfirmPasswordInputField;
     // submit button web element
     @FindBy(xpath = "//button[@type='submit']")
@@ -34,7 +34,7 @@ public class AdminChangePasswordPage extends BasePage{
     public void enterNewPassword() {adminNewPasswordInputField.sendKeys(newPassword);}
 
     //confirm password input
-    public void confirmNewPassword() {adminOldPasswordInputField.sendKeys(newPassword);}
+    public void confirmNewPassword() {adminConfirmPasswordInputField.sendKeys(newPassword);}
 
     //click submit new password button method
     public void clickSubmitNewPasswordButton() {

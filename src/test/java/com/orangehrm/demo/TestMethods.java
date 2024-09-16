@@ -127,6 +127,8 @@ public class TestMethods extends BaseTest{
         //confirm new password
         adminChangePasswordPage.confirmNewPassword();
         logger.info("Confirm password entered: " + adminChangePasswordPage.getNewPassword());
+        //click submit password button
+        adminChangePasswordPage.clickSubmitNewPasswordButton();
     }
 
     //admin change password page web element assert
