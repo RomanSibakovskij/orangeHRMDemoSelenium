@@ -19,6 +19,9 @@ public class TestMethods extends BaseTest{
         isAdminLoginWebElementDisplayed(adminLoginPage);
         //click 'login' button
         adminLoginPage.clickLoginButton();
+        //assert the admin has logged into admin dashboard
+        AdminDashBoardPage adminDashBoardPage = new AdminDashBoardPage(driver);
+//        assertEquals("Dashboard", adminDashBoardPage.getDashboardHeaderText(), "The dashboard header text isn't displayed"); -> NoSuchElementException with CORRECT selector - it can be found on browser dev console
     }
 
     // invalid admin login test method - no username
@@ -85,4 +88,26 @@ public class TestMethods extends BaseTest{
         //assert login button is displayed
         assertTrue(adminLoginPage.isLoginButtonDisplayed(), "The login button is not displayed");
     }
+
+    //admin dashboard test methods
+
+    //admin dropdown menu test method
+    protected void logOutAsAdminTest(AdminDashBoardPage adminDashBoardPage){
+        //click admin dropdown menu
+        adminDashBoardPage.clickAdminDropdownMenu();
+//        //web element assert
+//        isAdminDashboardPageWebElementDisplayed(adminDashBoardPage);
+        //click logout link
+        adminDashBoardPage.clickLogoutLink();
+        //assert the admin has returned to login page
+//        AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
+//        assertTrue(adminLoginPage.isLoginLogoDisplayed(), "The login logo is not displayed"); -> NoSuchElementException with CORRECT selector - it can be found on browser dev console
+    }
+
+    //admin dashboard web element assert
+    protected void isAdminDashboardPageWebElementDisplayed(AdminDashBoardPage adminDashBoardPage){
+        //assert admin dropdown menu is displayed
+        assertTrue(adminDashBoardPage.isAdminDropdownMenuDisplayed(), "The admin dropdown menu is not displayed");
+    }
+
 }

@@ -25,6 +25,10 @@ public class AdminLoginPage extends BasePage{
     @FindBy(xpath = "//span[.='Required']")
     private WebElement inputRequiredText;
 
+    //login page logo web element
+    @FindBy(xpath = "//div[@class='orangehrm-login-logo']")
+    private WebElement loginLogo;
+
     public AdminLoginPage(WebDriver driver) {
         super(driver);
     }
@@ -75,10 +79,11 @@ public class AdminLoginPage extends BasePage{
         loginButton.click();
     }
 
-    //admin login page web element
+    //admin login page web element assert methods
     public boolean isUsernameInputFieldDisplayed(){return usernameInputField.isDisplayed();}
     public boolean isPasswordInputFieldDisplayed(){return passwordInputField.isDisplayed();}
     public boolean isLoginButtonDisplayed(){return loginButton.isDisplayed();}
+    public boolean isLoginLogoDisplayed(){return loginLogo.isDisplayed();}
 
     //invalid message getters
     public String getRequiredInputText(){return inputRequiredText.getText();}
