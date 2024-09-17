@@ -1,8 +1,6 @@
 package com.orangehrm.demo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import org.slf4j.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestMethods extends BaseTest{
@@ -104,12 +102,6 @@ public class TestMethods extends BaseTest{
 //        assertTrue(adminLoginPage.isLoginLogoDisplayed(), "The login logo is not displayed"); -> NoSuchElementException with CORRECT selector - it can be found on browser dev console
     }
 
-    //admin dashboard web element assert
-    protected void isAdminDashboardPageWebElementDisplayed(AdminDashBoardPage adminDashBoardPage){
-        //assert admin dropdown menu is displayed
-        assertTrue(adminDashBoardPage.isAdminDropdownMenuDisplayed(), "The admin dropdown menu is not displayed");
-    }
-
     //admin change password test method
     protected void changeAdminPasswordTest(AdminChangePasswordPage adminChangePasswordPage){
         AdminDashBoardPage adminDashBoardPage = new AdminDashBoardPage(driver);
@@ -198,20 +190,6 @@ public class TestMethods extends BaseTest{
         assertEquals("Passwords do not match", adminChangePasswordPage.getPasswordsDoNotMatchMessage(), "The 'passwords don't match' isn't displayed");
     }
 
-    //admin change password page web element assert
-    protected void isAdminChangePasswordPageWebElementDisplayed(AdminChangePasswordPage adminChangePasswordPage){
-        //assert old password input field is displayed
-        assertTrue(adminChangePasswordPage.isAdminOldPasswordInputFieldDisplayed(), "The old password input field isn't displayed");
-        //assert new password input field is displayed
-        assertTrue(adminChangePasswordPage.isAdminNewPasswordInputFieldDisplayed(), "The new password input field isn't displayed");
-        //assert confirm password input field is displayed
-        assertTrue(adminChangePasswordPage.isAdminConfirmPasswordInputFieldDisplayed(), "The confirm password input field isn't displayed");
-        //assert cancel button is displayed
-        assertTrue(adminChangePasswordPage.isCancelButtonDisplayed(), "The cancel button isn't displayed");
-        //assert submit button is displayed
-        assertTrue(adminChangePasswordPage.isSubmitPasswordButtonDisplayed(), "The submit button isn't displayed");
-    }
-
     //admin login with changed password test method
     protected void changedAdminPasswordLoginTest(AdminChangePasswordPage adminChangePasswordPage){
         AdminDashBoardPage adminDashBoardPage = new AdminDashBoardPage(driver);
@@ -250,6 +228,40 @@ public class TestMethods extends BaseTest{
         }
     }
 
+    //click 'admin management page' link test method
+    protected void clickAdminManagementPageLinkTest(){
+        //assert the admin has logged into admin dashboard
+        AdminDashBoardPage adminDashBoardPage = new AdminDashBoardPage(driver);
+        assertEquals("Dashboard", adminDashBoardPage.getDashboardHeaderText(), "The dashboard header text isn't displayed"); //-> NoSuchElementException with CORRECT selector - it can be found on browser dev console
+        //web element assert
+        isAdminDashboardPageWebElementDisplayed(adminDashBoardPage);
+        //admin management page aside link click
+        adminDashBoardPage.clickAdminManagementPageLink();
+        //assert the admin has navigated to admin management page
+        assertEquals("Admin\n" + "User Management", adminDashBoardPage.getAdminDashboardPageTitle(), "The page title isn't displayed");
+    }
 
+    //web page element assert methods
 
+    //admin dashboard web element assert
+    protected void isAdminDashboardPageWebElementDisplayed(AdminDashBoardPage adminDashBoardPage){
+        //assert admin dropdown menu is displayed
+        assertTrue(adminDashBoardPage.isAdminDropdownMenuDisplayed(), "The admin dropdown menu is not displayed");
+        //assert admin management page aside link is displayed
+        assertTrue(adminDashBoardPage.isAdminManagementAsideLinkDisplayed(), "The aside 'admin management page' link isn't displayed");
+    }
+
+    //admin change password page web element assert
+    protected void isAdminChangePasswordPageWebElementDisplayed(AdminChangePasswordPage adminChangePasswordPage){
+        //assert old password input field is displayed
+        assertTrue(adminChangePasswordPage.isAdminOldPasswordInputFieldDisplayed(), "The old password input field isn't displayed");
+        //assert new password input field is displayed
+        assertTrue(adminChangePasswordPage.isAdminNewPasswordInputFieldDisplayed(), "The new password input field isn't displayed");
+        //assert confirm password input field is displayed
+        assertTrue(adminChangePasswordPage.isAdminConfirmPasswordInputFieldDisplayed(), "The confirm password input field isn't displayed");
+        //assert cancel button is displayed
+        assertTrue(adminChangePasswordPage.isCancelButtonDisplayed(), "The cancel button isn't displayed");
+        //assert submit button is displayed
+        assertTrue(adminChangePasswordPage.isSubmitPasswordButtonDisplayed(), "The submit button isn't displayed");
+    }
 }

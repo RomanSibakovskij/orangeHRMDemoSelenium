@@ -20,6 +20,12 @@ public class AdminDashBoardPage extends BasePage{
     @FindBy(xpath = "//ul[@class='oxd-dropdown-menu']/li[4]")
     private WebElement adminLogoutLink;
 
+    //admin dashboard aside links web elements
+    @FindBy(xpath = "//ul[@class='oxd-main-menu']/li[1]")
+    private WebElement adminManagementPageAsideLink;
+    //admin dashboard page title element
+    @FindBy(xpath = "//span[@class='oxd-topbar-header-breadcrumb']")
+    private WebElement adminDashboardPageTitle;
 
     public AdminDashBoardPage(WebDriver driver) {
         super(driver);
@@ -44,10 +50,21 @@ public class AdminDashBoardPage extends BasePage{
         adminLogoutLink.click();
     }
 
+    //admin management page link click method
+    public void clickAdminManagementPageLink(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.elementToBeClickable(adminManagementPageAsideLink));
+        adminManagementPageAsideLink.click();
+    }
+
     //admin dashboard header getter
     public String getDashboardHeaderText(){return dashboardHeader.getText();}
 
+    //get admin dashboard page title
+    public String getAdminDashboardPageTitle(){return adminDashboardPageTitle.getText();}
+
     //admin dashboard web element asserts
     public boolean isAdminDropdownMenuDisplayed(){return adminDropdownMenu.isDisplayed();}
+    public boolean isAdminManagementAsideLinkDisplayed(){return adminManagementPageAsideLink.isDisplayed();}
 
 }
