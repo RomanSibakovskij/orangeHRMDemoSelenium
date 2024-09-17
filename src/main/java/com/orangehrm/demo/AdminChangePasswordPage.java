@@ -16,6 +16,9 @@ public class AdminChangePasswordPage extends BasePage{
     private WebElement adminOldPasswordInputField;
     @FindBy(xpath = "(//input[@type='password'])[3]")
     private WebElement adminConfirmPasswordInputField;
+    //cancel button web element
+    @FindBy(xpath = "//button[.=' Cancel ']")
+    private WebElement cancelButton;
     // submit button web element
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement submitNewPasswordButton;
@@ -51,6 +54,13 @@ public class AdminChangePasswordPage extends BasePage{
     //mismatching new password input
     public void mismatchingConfirmNewPassword() {adminConfirmPasswordInputField.sendKeys("morris445");}
 
+    //click cancel button method
+    public void clickCancelButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(650));
+        wait.until(ExpectedConditions.elementToBeClickable(cancelButton));
+        cancelButton.click();
+    }
+
     //click submit new password button method
     public void clickSubmitNewPasswordButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(650));
@@ -77,6 +87,7 @@ public class AdminChangePasswordPage extends BasePage{
     public boolean isAdminOldPasswordInputFieldDisplayed(){return adminOldPasswordInputField.isDisplayed();}
     public boolean isAdminNewPasswordInputFieldDisplayed(){return adminNewPasswordInputField.isDisplayed();}
     public boolean isAdminConfirmPasswordInputFieldDisplayed(){return adminConfirmPasswordInputField.isDisplayed();}
+    public boolean isCancelButtonDisplayed(){return cancelButton.isDisplayed();}
     public boolean isSubmitPasswordButtonDisplayed(){return submitNewPasswordButton.isDisplayed();}
 
 }

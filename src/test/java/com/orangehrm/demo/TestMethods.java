@@ -131,6 +131,27 @@ public class TestMethods extends BaseTest{
         adminChangePasswordPage.clickSubmitNewPasswordButton();
     }
 
+    //admin change password test method -> cancel the change
+    protected void cancelChangeAdminPasswordTest(AdminChangePasswordPage adminChangePasswordPage){
+        AdminDashBoardPage adminDashBoardPage = new AdminDashBoardPage(driver);
+        //click admin dropdown menu
+        adminDashBoardPage.clickAdminDropdownMenu();
+        //click 'change password' link
+        adminDashBoardPage.clickChangePasswordLink();
+        //input old password
+        adminChangePasswordPage.enterOldPassword();
+        //assert web elements are displayed
+        isAdminChangePasswordPageWebElementDisplayed(adminChangePasswordPage);
+        //input new password
+        adminChangePasswordPage.enterNewPassword();
+        logger.info("New password entered: " + adminChangePasswordPage.getNewPassword());
+        //confirm new password
+        adminChangePasswordPage.confirmNewPassword();
+        logger.info("Confirm password entered: " + adminChangePasswordPage.getNewPassword());
+        //click cancel button
+        adminChangePasswordPage.clickCancelButton();
+    }
+
     //invalid admin change password test method - mismatching old password
     protected void changeAdminMismatchOldPasswordTest(AdminChangePasswordPage adminChangePasswordPage){
         AdminDashBoardPage adminDashBoardPage = new AdminDashBoardPage(driver);
@@ -185,6 +206,10 @@ public class TestMethods extends BaseTest{
         assertTrue(adminChangePasswordPage.isAdminNewPasswordInputFieldDisplayed(), "The new password input field isn't displayed");
         //assert confirm password input field is displayed
         assertTrue(adminChangePasswordPage.isAdminConfirmPasswordInputFieldDisplayed(), "The confirm password input field isn't displayed");
+        //assert cancel button is displayed
+        assertTrue(adminChangePasswordPage.isCancelButtonDisplayed(), "The cancel button isn't displayed");
+        //assert submit button is displayed
+        assertTrue(adminChangePasswordPage.isSubmitPasswordButtonDisplayed(), "The submit button isn't displayed");
     }
 
     //admin login with changed password test method

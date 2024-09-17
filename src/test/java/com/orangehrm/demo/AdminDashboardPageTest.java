@@ -48,4 +48,15 @@ public class AdminDashboardPageTest extends TestMethods{
         changeAdminMismatchNewPasswordTest(adminChangePasswordPage);
     }
 
+    //Test 003d -> admin 'change password' test -> cancel password change
+    @Test
+    @DisplayName("Cancel Password Change as Administrator Test")
+    @Tag("Change_Admin_Password_Cancel")
+    void adminCancelChangePasswordTest(){
+        AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
+        loginAsAdminTest(adminLoginPage);
+        AdminChangePasswordPage adminChangePasswordPage = new AdminChangePasswordPage(driver);
+        cancelChangeAdminPasswordTest(adminChangePasswordPage);
+    }
+
 }
