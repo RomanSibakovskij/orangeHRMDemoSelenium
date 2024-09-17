@@ -21,7 +21,10 @@ public class AdminChangePasswordPage extends BasePage{
     private WebElement submitNewPasswordButton;
     //success message web element
     @FindBy(xpath = "//p[text()='Successfully Saved']")
-    private WebElement successPasswordChangeMassage;
+    private WebElement successPasswordChangeMessage;
+    //incorrect current password message web element
+    @FindBy(xpath = "//p[text()='Current Password is Incorrect']")
+    private WebElement incorrectCurrentPasswordMessage;
 
     //new password input variable
     private String newPassword = TestDataGenerator.generateRandomPassword();
@@ -39,6 +42,12 @@ public class AdminChangePasswordPage extends BasePage{
     //confirm password input
     public void confirmNewPassword() {adminConfirmPasswordInputField.sendKeys(newPassword);}
 
+    //mismatching old password input
+    public void enterMismatchingOldPassword() {adminOldPasswordInputField.sendKeys("tacker123");}
+
+    //mismatching new password input
+    public void mismatchingConfirmNewPassword() {adminConfirmPasswordInputField.sendKeys("morris445");}
+
     //click submit new password button method
     public void clickSubmitNewPasswordButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(650));
@@ -50,7 +59,10 @@ public class AdminChangePasswordPage extends BasePage{
     public String getNewPassword() {return newPassword;}
 
     //success password change message getter
-    public String getSuccessMessage() {return successPasswordChangeMassage.getText();}
+    public String getSuccessMessage() {return successPasswordChangeMessage.getText();}
+
+    //incorrect current password message getter
+    public String getIncorrectCurrentMessage() {return incorrectCurrentPasswordMessage.getText();}
 
     //admin change password web element assert methods
     public boolean isAdminOldPasswordInputFieldDisplayed(){return adminOldPasswordInputField.isDisplayed();}
