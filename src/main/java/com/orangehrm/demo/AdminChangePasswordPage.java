@@ -25,6 +25,9 @@ public class AdminChangePasswordPage extends BasePage{
     //incorrect current password message web element
     @FindBy(xpath = "//p[text()='Current Password is Incorrect']")
     private WebElement incorrectCurrentPasswordMessage;
+    //password don't match message web element
+    @FindBy(xpath = "//span[.='Passwords do not match']")
+    private WebElement passwordsDoNotMatchMessage;
 
     //new password input variable
     private String newPassword = TestDataGenerator.generateRandomPassword();
@@ -57,6 +60,12 @@ public class AdminChangePasswordPage extends BasePage{
 
     //new password getter
     public String getNewPassword() {return newPassword;}
+
+    //mismatching confirm password getter
+    public String getMismatchingNewPassword() {return adminConfirmPasswordInputField.getAttribute("value");}
+
+    //passwords don't match message getter
+    public String getPasswordsDoNotMatchMessage() {return passwordsDoNotMatchMessage.getText();}
 
     //success password change message getter
     public String getSuccessMessage() {return successPasswordChangeMessage.getText();}

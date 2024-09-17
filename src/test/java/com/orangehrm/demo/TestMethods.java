@@ -154,6 +154,29 @@ public class TestMethods extends BaseTest{
         assertEquals("Current Password is Incorrect", adminChangePasswordPage.getIncorrectCurrentMessage(), "The 'incorrect current password' isn't displayed");
     }
 
+    //invalid admin change password test method - mismatching new password
+    protected void changeAdminMismatchNewPasswordTest(AdminChangePasswordPage adminChangePasswordPage){
+        AdminDashBoardPage adminDashBoardPage = new AdminDashBoardPage(driver);
+        //click admin dropdown menu
+        adminDashBoardPage.clickAdminDropdownMenu();
+        //click 'change password' link
+        adminDashBoardPage.clickChangePasswordLink();
+        //input old password
+        adminChangePasswordPage.enterOldPassword();
+        //assert web elements are displayed
+        isAdminChangePasswordPageWebElementDisplayed(adminChangePasswordPage);
+        //input new password
+        adminChangePasswordPage.enterNewPassword();
+        logger.info("New password entered: " + adminChangePasswordPage.getNewPassword());
+        //confirm new password
+        adminChangePasswordPage.mismatchingConfirmNewPassword();
+        logger.info("Mismatching confirm password entered: " + adminChangePasswordPage.getMismatchingNewPassword());
+        //click submit password button
+        adminChangePasswordPage.clickSubmitNewPasswordButton();
+        //assert the passwords don't match message is present
+        assertEquals("Passwords do not match", adminChangePasswordPage.getPasswordsDoNotMatchMessage(), "The 'passwords don't match' isn't displayed");
+    }
+
     //admin change password page web element assert
     protected void isAdminChangePasswordPageWebElementDisplayed(AdminChangePasswordPage adminChangePasswordPage){
         //assert old password input field is displayed
