@@ -15,4 +15,15 @@ public class AdminDashboardPageTest extends TestMethods{
         changeAdminPasswordTest(adminChangePasswordPage);
     }
 
+    //Test 003a -> admin login with changed password test (login fails with valid updated password)
+    @Test
+    @DisplayName("Change Password as Administrator Test")
+    @Tag("Change_Admin_Password")
+    void adminChangedPasswordLoginTest(){
+        AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
+        loginAsAdminTest(adminLoginPage);
+        AdminChangePasswordPage adminChangePasswordPage = new AdminChangePasswordPage(driver);
+        changedAdminPasswordLoginTest(adminChangePasswordPage);
+    }
+
 }

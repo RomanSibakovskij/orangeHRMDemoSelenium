@@ -29,6 +29,10 @@ public class AdminLoginPage extends BasePage{
     @FindBy(xpath = "//div[@class='orangehrm-login-logo']")
     private WebElement loginLogo;
 
+    //changed password login data
+    private String username;
+    private String newPassword;
+
     public AdminLoginPage(WebDriver driver) {
         super(driver);
     }
@@ -44,6 +48,23 @@ public class AdminLoginPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
         wait.until(ExpectedConditions.visibilityOf(passwordInputField));
         passwordInputField.sendKeys("admin123");
+    }
+
+    //input login data with changed password getter method
+    public void inputChangedPasswordLoginData(AdminChangePasswordPage adminChangePasswordPage){
+        username = "Admin";
+        newPassword = adminChangePasswordPage.getNewPassword();
+
+        System.out.println("Generated data: " + "\n");
+        logger.info("Login username: " + username);
+        logger.info("Changed admin password: " + newPassword);
+    }
+
+    //changed password input method
+    public void inputChangedAdminPassword(String newPassword){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.visibilityOf(passwordInputField));
+        passwordInputField.sendKeys(newPassword);
     }
 
     //invalid admin user data input - no singular input

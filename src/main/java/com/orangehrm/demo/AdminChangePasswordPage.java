@@ -19,6 +19,9 @@ public class AdminChangePasswordPage extends BasePage{
     // submit button web element
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement submitNewPasswordButton;
+    //success message web element
+    @FindBy(xpath = "//p[text()='Successfully Saved']")
+    private WebElement successPasswordChangeMassage;
 
     //new password input variable
     private String newPassword = TestDataGenerator.generateRandomPassword();
@@ -45,6 +48,9 @@ public class AdminChangePasswordPage extends BasePage{
 
     //new password getter
     public String getNewPassword() {return newPassword;}
+
+    //success password change message getter
+    public String getSuccessMessage() {return successPasswordChangeMassage.getText();}
 
     //admin change password web element assert methods
     public boolean isAdminOldPasswordInputFieldDisplayed(){return adminOldPasswordInputField.isDisplayed();}

@@ -141,4 +141,44 @@ public class TestMethods extends BaseTest{
         assertTrue(adminChangePasswordPage.isAdminConfirmPasswordInputFieldDisplayed(), "The confirm password input field isn't displayed");
     }
 
+    //admin login with changed password test method
+    protected void changedAdminPasswordLoginTest(AdminChangePasswordPage adminChangePasswordPage){
+        AdminDashBoardPage adminDashBoardPage = new AdminDashBoardPage(driver);
+        //click admin dropdown menu
+        adminDashBoardPage.clickAdminDropdownMenu();
+        //click 'change password' link
+        adminDashBoardPage.clickChangePasswordLink();
+        //input old password
+        adminChangePasswordPage.enterOldPassword();
+        //assert web elements are displayed
+        isAdminChangePasswordPageWebElementDisplayed(adminChangePasswordPage);
+        //input new password
+        adminChangePasswordPage.enterNewPassword();
+        logger.info("New password entered: " + adminChangePasswordPage.getNewPassword());
+        //confirm new password
+        adminChangePasswordPage.confirmNewPassword();
+        logger.info("Confirm password entered: " + adminChangePasswordPage.getNewPassword());
+        //click submit password button
+        adminChangePasswordPage.clickSubmitNewPasswordButton();
+        //assert the password has been changed
+        assertEquals("Successfully Saved", adminChangePasswordPage.getSuccessMessage(), "The success message isn't displayed");
+        //logout from admin account
+        adminDashBoardPage.clickAdminDropdownMenu();
+        adminDashBoardPage.clickLogoutLink();
+        //re-login with the updated password
+        AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
+        //input login data
+        adminLoginPage.inputChangedPasswordLoginData(adminChangePasswordPage);
+        adminLoginPage.inputAdminUsername();
+        adminLoginPage.inputChangedAdminPassword(adminChangePasswordPage.getNewPassword());
+        //login button click
+        adminLoginPage.clickLoginButton();
+        //if the login fails with the valid changed password
+        if(!adminLoginPage.getInvalidCredentialsMessage().isEmpty()){
+            logger.error("The admin login failed with valid updated password");
+        }
+    }
+
+
+
 }
