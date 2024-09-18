@@ -236,11 +236,7 @@ public class TestMethods extends BaseTest{
         //web element assert
         isUserManagementPageWebElementDisplayed(adminUserManagementPage);
         //view available user data
-        System.out.println("Available user data: " + "\n");
-        logger.info("Usernames: " + adminUserManagementPage.getTableUsername());
-        logger.info("User roles: " + adminUserManagementPage.getTableUserRole());
-        logger.info("Employee names: " + adminUserManagementPage.getTableEmployeeName());
-        logger.info("Employee status': " + adminUserManagementPage.getTableEmployeeStatus());
+        logAvailableUserData(adminUserManagementPage);
     }
     //remove selected user from user table test method
     protected void removeSelectedUserFromUserTableTest(AdminUserManagementPage adminUserManagementPage){
@@ -251,8 +247,32 @@ public class TestMethods extends BaseTest{
 //        assertEquals("The selected record will be permanently deleted. Are you sure you want to continue?", adminUserManagementPage.getUserRemovalWarningBoxText(), "The expected warning box text isn't displayed"); //-> the element can't be found with VALID selector
         //confirm user removal
         adminUserManagementPage.clickConfirmUserRemovalButton();
+        //log user data after the removal for confirmation
+        logAvailableUserData(adminUserManagementPage);
         //assert the user confirmation message is displayed
 //        assertEquals("Successfully Deleted", adminUserManagementPage.getUserRemovalConfirmationMessageText(), "The user removal confirmation message text isn't displayed"); //-> the element can't be found with VALID selector
+    }
+
+    //abort removal of selected user from user table test method
+    protected void abortRemoveSelectedUserFromUserTableTest(AdminUserManagementPage adminUserManagementPage){
+        viewAdminManagementPageUserTableTest(adminUserManagementPage);
+        //click remove button for a specified user
+        adminUserManagementPage.clickRemoveUserButton4();
+        //assert the correct text is displayed in warning box
+//        assertEquals("The selected record will be permanently deleted. Are you sure you want to continue?", adminUserManagementPage.getUserRemovalWarningBoxText(), "The expected warning box text isn't displayed"); //-> the element can't be found with VALID selector
+        //confirm user removal
+        adminUserManagementPage.clickAbortUserRemovalButton();
+        //log user data after the removal abort for confirmation
+        logAvailableUserData(adminUserManagementPage);
+       }
+
+    //logger methods
+    protected void logAvailableUserData(AdminUserManagementPage adminUserManagementPage){
+        System.out.println("Available user data: " + "\n");
+        logger.info("Usernames: " + adminUserManagementPage.getTableUsername());
+        logger.info("User roles: " + adminUserManagementPage.getTableUserRole());
+        logger.info("Employee names: " + adminUserManagementPage.getTableEmployeeName());
+        logger.info("Employee status': " + adminUserManagementPage.getTableEmployeeStatus());
     }
 
     //web page element assert methods
