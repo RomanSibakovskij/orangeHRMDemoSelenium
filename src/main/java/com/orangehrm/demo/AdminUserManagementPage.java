@@ -26,6 +26,19 @@ public class AdminUserManagementPage extends BasePage{
     private List<WebElement> userTableRemoveUserButtons;
     @FindBy(xpath = "//div[@class='oxd-table-body']/div[@class='oxd-table-card']/div[@role='row']/div[6]/div[1]/button[2]")
     private List<WebElement> userTableEditUserButtons;
+    //user removal warning box text web element
+    @FindBy(xpath = "//div[@id='app']/div[@role='dialog']//div[@role='document']/div[@class='orangehrm-text-center-align']/p")
+    private WebElement userRemovalWarningText;
+    //user removal warning box denial button web element
+    @FindBy(xpath = "//div[@role='document']/div/button[1]")
+    private WebElement userRemovalDenialButton;
+    //user removal warning box confirm button web element
+    @FindBy(xpath = "//div[@role='document']/div/button[2]")
+    private WebElement userRemovalConfirmButton;
+    //user deletion confirmation message web element
+    @FindBy(xpath = "//p[text()='Successfully Deleted']")
+    private WebElement userRemovalConfirmationMessage;
+
 
     public AdminUserManagementPage(WebDriver driver) {
         super(driver);
@@ -90,6 +103,19 @@ public class AdminUserManagementPage extends BasePage{
     public void clickRemoveUserButton5() {clickRemoveUserButton(4);}
     public void clickRemoveUserButton6() {clickRemoveUserButton(5);}
 
+    //user removal warning box confirm button click
+    public void clickConfirmUserRemovalButton(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(720));
+        wait.until(ExpectedConditions.elementToBeClickable(userRemovalConfirmButton));
+        userRemovalConfirmButton.click();
+    }
+    //user removal warning box denial button click
+    public void clickAbortUserRemovalButton(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(720));
+        wait.until(ExpectedConditions.elementToBeClickable(userRemovalDenialButton));
+        userRemovalDenialButton.click();
+    }
+
     //admin user management page web element assert methods (table)
     public boolean isTableSelectUserCheckboxDisplayed() {
         for (WebElement element : userTableSelectUserCheckboxes) {
@@ -152,4 +178,8 @@ public class AdminUserManagementPage extends BasePage{
         }
         return true;
     }
+    //user removal warning box text getter
+    public String getUserRemovalWarningBoxText(){return userRemovalWarningText.getText();}
+    //user removal confirmation message text getter
+    public String getUserRemovalConfirmationMessageText(){return userRemovalConfirmationMessage.getText();}
 }

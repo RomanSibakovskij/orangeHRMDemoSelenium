@@ -16,4 +16,16 @@ public class AdminUserManagementPageTest extends TestMethods{
         viewAdminManagementPageUserTableTest(adminUserManagementPage);
     }
 
+    //Test 004b -> remove specific user from the admin management user table test
+    @Test
+    @DisplayName("Remove Specific User From User Table")
+    @Tag("Remove_Specific_User_From_User_Table")
+    void removeSpecificUserFromUserTableTest(){
+        AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
+        loginAsAdminTest(adminLoginPage);
+        clickAdminManagementPageLinkTest();
+        AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
+        removeSelectedUserFromUserTableTest(adminUserManagementPage);
+    }
+
 }

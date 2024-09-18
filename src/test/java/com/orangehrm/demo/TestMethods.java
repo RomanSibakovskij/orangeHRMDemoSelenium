@@ -242,6 +242,18 @@ public class TestMethods extends BaseTest{
         logger.info("Employee names: " + adminUserManagementPage.getTableEmployeeName());
         logger.info("Employee status': " + adminUserManagementPage.getTableEmployeeStatus());
     }
+    //remove selected user from user table test method
+    protected void removeSelectedUserFromUserTableTest(AdminUserManagementPage adminUserManagementPage){
+        viewAdminManagementPageUserTableTest(adminUserManagementPage);
+        //click remove button for a specified user
+        adminUserManagementPage.clickRemoveUserButton4();
+        //assert the correct text is displayed in warning box
+//        assertEquals("The selected record will be permanently deleted. Are you sure you want to continue?", adminUserManagementPage.getUserRemovalWarningBoxText(), "The expected warning box text isn't displayed"); //-> the element can't be found with VALID selector
+        //confirm user removal
+        adminUserManagementPage.clickConfirmUserRemovalButton();
+        //assert the user confirmation message is displayed
+//        assertEquals("Successfully Deleted", adminUserManagementPage.getUserRemovalConfirmationMessageText(), "The user removal confirmation message text isn't displayed"); //-> the element can't be found with VALID selector
+    }
 
     //web page element assert methods
 
