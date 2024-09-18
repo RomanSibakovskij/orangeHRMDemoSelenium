@@ -40,10 +40,10 @@ public class AdminUserManagementPageTest extends TestMethods{
         abortRemoveSelectedUserFromUserTableTest(adminUserManagementPage);
     }
 
-    //Test 004d -> aaa a new user into the admin management user table test
+    //Test 004d -> add a new user into the admin management user table test
     @Test
-    @DisplayName("Abort Removal Of A Specific User From User Table")
-    @Tag("Abort_Removal_Specific_User_From_User_Table")
+    @DisplayName("Add New User Into User Table")
+    @Tag("Add_New_User_Into_User_Table")
     void addNewUserIntoTableTest(){
         AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
         loginAsAdminTest(adminLoginPage);

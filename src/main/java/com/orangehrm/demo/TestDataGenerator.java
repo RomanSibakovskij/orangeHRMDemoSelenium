@@ -8,18 +8,40 @@ import java.util.*;
 public class TestDataGenerator extends BasePage{
 
     private static final Random RANDOM = new SecureRandom();
+    private static final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String LOWER = "abcdefghijklmnopqrstuvwxyz";
 
     //admin user data
     private static String newPassword;
+    private static String username;
+    private static String employeeName;
 
     public TestDataGenerator(WebDriver driver) {
         super(driver);
+    }
+
+    // Generate random string methods (for username, employee name)
+    private static String generateRandomString(String characters, int length) {
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            int index = RANDOM.nextInt(characters.length());
+            sb.append(characters.charAt(index));
+        }
+        return sb.toString();
     }
 
     private static String shuffleString(String string) {
         List<String> letters = Arrays.asList(string.split(""));
         Collections.shuffle(letters);
         return String.join("", letters);
+    }
+
+    // Randomizer methods (for username, employee name)
+    public static String generateRandomUsername(int length) {
+        return generateRandomString(UPPER + LOWER, length);
+    }
+    public static String generateRandomEmployeeName(int length) {
+        return generateRandomString(UPPER + LOWER, length);
     }
 
     public static String generateRandomPassword() {

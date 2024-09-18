@@ -271,6 +271,23 @@ public class TestMethods extends BaseTest{
         AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
         //click 'add user' button
         adminUserManagementPage.clickAddNewUserButton();
+        AddNewUserPage addNewUserPage = new AddNewUserPage(driver);
+        //click user role selector
+        addNewUserPage.clickUserRoleDropdownSelector();
+        //select ESS option
+        addNewUserPage.selectESSOption();
+        //click status selector
+        addNewUserPage.clickStatusDropdownSelector();
+        //select 'enabled' option
+        addNewUserPage.selectEnabledOption();
+        //input new user data
+        addNewUserPage.inputNewUserData();
+        addNewUserPage.inputUsername();
+//        addNewUserPage.inputEmployeeName(); //-> ElementNotInteractableException DESPITE correct selector
+        addNewUserPage.inputPassword();
+        addNewUserPage.inputConfirmPassword();
+        //log new user data
+        logNewUserData(addNewUserPage);
     }
 
     //logger methods
@@ -280,6 +297,15 @@ public class TestMethods extends BaseTest{
         logger.info("User roles: " + adminUserManagementPage.getTableUserRole());
         logger.info("Employee names: " + adminUserManagementPage.getTableEmployeeName());
         logger.info("Employee status': " + adminUserManagementPage.getTableEmployeeStatus());
+    }
+
+    //new user data logger
+    protected void logNewUserData(AddNewUserPage addNewUserPage){
+        System.out.println("New user data: " + "\n");
+        logger.info("New user username: " + addNewUserPage.getUsername());
+        logger.info("New employee name: " + addNewUserPage.getEmployeeName());
+        logger.info("New user password: " + addNewUserPage.getPassword());
+        logger.info("New user confirm password: " + addNewUserPage.getPassword());
     }
 
     //web page element assert methods
@@ -343,5 +369,24 @@ public class TestMethods extends BaseTest{
         assertTrue(adminUserManagementPage.isSearchButtonDisplayed(), "The 'search' button isn't displayed");
         //assert add new user button is displayed
         assertTrue(adminUserManagementPage.isAddUserButtonDisplayed(), "The 'add user' button isn't displayed");
+    }
+    //add new user page web element assert
+    protected void isAddNewUserPageWebElementDisplayed(AddNewUserPage addNewUserPage){
+        //assert user role dropdown selector is displayed
+        assertTrue(addNewUserPage.isUserRoleDropdownSelectorDisplayed(), "The user role dropdown selector isn't displayed");
+        //assert status dropdown selector is displayed
+        assertTrue(addNewUserPage.isStatusDropdownSelectorDisplayed(), "The status dropdown selector isn't displayed");
+        //assert employee name input field is displayed
+        assertTrue(addNewUserPage.isEmployeeNameInputFieldDisplayed(), "The employee name input field isn't displayed");
+        //assert username input field is displayed
+        assertTrue(addNewUserPage.isUsernameInputFieldDisplayed(), "The username input field isn't displayed");
+        //assert password input field is displayed
+        assertTrue(addNewUserPage.isPasswordInputFieldDisplayed(), "The password input field isn't displayed");
+        //assert confirm password input field is displayed
+        assertTrue(addNewUserPage.isConfirmPasswordInputFieldDisplayed(), "The confirm password input field isn't displayed");
+        //assert 'cancel' button is displayed
+        assertTrue(addNewUserPage.isCancelAddNewUserButtonDisplayed(), "The 'cancel' button isn't displayed");
+        //assert add new user button is displayed(save)
+        assertTrue(addNewUserPage.isAddNewUserButtonDisplayed(), "The 'add new user' button isn't displayed");
     }
 }
