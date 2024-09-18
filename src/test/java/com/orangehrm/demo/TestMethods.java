@@ -322,5 +322,19 @@ public class TestMethods extends BaseTest{
         assertTrue(adminUserManagementPage.isTableUserRemoveButtonDisplayed(), "The user remove button isn't displayed");
         //assert user table edit user buttons are displayed
         assertTrue(adminUserManagementPage.isTableEditUserButtonDisplayed(), "The user edit button isn't displayed");
+        //assert username search bar is displayed
+        assertTrue(adminUserManagementPage.isUsernameSearchBarDisplayed(), "The username search bar isn't displayed");
+        //assert user role dropdown selector is displayed
+        assertTrue(adminUserManagementPage.isUserRoleSelectorDisplayed(), "The user role dropdown selector isn't displayed");
+        //assert employee name search bar is displayed
+        assertTrue(adminUserManagementPage.isEmployeeNameSearchBarDisplayed(), "The employee name search bar isn't displayed");
+        //assert employee status dropdown selector is displayed
+        assertTrue(adminUserManagementPage.isEmployeeStatusSearchBarDisplayed(), "The employee status dropdown selector isn't displayed");
+        //assert the reset search button is displayed
+        assertTrue(adminUserManagementPage.isResetSearchButtonDisplayed(), "The 'reset' button isn't displayed");
+        //assert the search button is displayed
+        assertTrue(adminUserManagementPage.isSearchButtonDisplayed(), "The 'search' button isn't displayed");
+        //assert add new user button is displayed
+        assertTrue(adminUserManagementPage.isAddUserButtonDisplayed(), "The 'add user' button isn't displayed");
     }
 }

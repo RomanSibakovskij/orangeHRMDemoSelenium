@@ -38,6 +38,22 @@ public class AdminUserManagementPage extends BasePage{
     //user deletion confirmation message web element
     @FindBy(xpath = "//p[text()='Successfully Deleted']")
     private WebElement userRemovalConfirmationMessage;
+    //admin management page web elements
+    @FindBy(xpath = "//div[@class='oxd-form-row']/div/div[1]")
+    private WebElement usernameSearchBar;
+    @FindBy(xpath = "//div[@class='oxd-form-row']/div/div[2]")
+    private WebElement userRoleDropdownSelector;
+    @FindBy(xpath = "//div[@class='oxd-form-row']/div/div[3]")
+    private WebElement employeeNameSearchBar;
+    @FindBy(xpath = "//div[@class='oxd-form-row']/div/div[4]")
+    private WebElement statusDropdownSelector;
+    @FindBy(xpath = "//button[@class='oxd-button oxd-button--medium oxd-button--ghost']")
+    private WebElement resetSearchButton;
+    @FindBy(xpath = "//button[@type='submit']")
+    private WebElement searchButton;
+    //add new user button element
+    @FindBy(xpath = "//button[@class='oxd-button oxd-button--medium oxd-button--secondary']")
+    private WebElement addUserButton;
 
 
     public AdminUserManagementPage(WebDriver driver) {
@@ -178,6 +194,14 @@ public class AdminUserManagementPage extends BasePage{
         }
         return true;
     }
+    public boolean isUsernameSearchBarDisplayed(){return usernameSearchBar.isDisplayed();}
+    public boolean isUserRoleSelectorDisplayed(){return userRoleDropdownSelector.isDisplayed();}
+    public boolean isEmployeeNameSearchBarDisplayed(){return employeeNameSearchBar.isDisplayed();}
+    public boolean isEmployeeStatusSearchBarDisplayed(){return statusDropdownSelector.isDisplayed();}
+    public boolean isResetSearchButtonDisplayed(){return resetSearchButton.isDisplayed();}
+    public boolean isSearchButtonDisplayed(){return searchButton.isDisplayed();}
+    public boolean isAddUserButtonDisplayed(){return addUserButton.isDisplayed();}
+
     //user removal warning box text getter
     public String getUserRemovalWarningBoxText(){return userRemovalWarningText.getText();}
     //user removal confirmation message text getter
