@@ -132,6 +132,13 @@ public class AdminUserManagementPage extends BasePage{
         userRemovalDenialButton.click();
     }
 
+    //add new user button click method
+    public void clickAddNewUserButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(720));
+        wait.until(ExpectedConditions.elementToBeClickable(addUserButton));
+        addUserButton.click();
+    }
+
     //admin user management page web element assert methods (table)
     public boolean isTableSelectUserCheckboxDisplayed() {
         for (WebElement element : userTableSelectUserCheckboxes) {

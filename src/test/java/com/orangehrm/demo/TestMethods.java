@@ -264,7 +264,14 @@ public class TestMethods extends BaseTest{
         adminUserManagementPage.clickAbortUserRemovalButton();
         //log user data after the removal abort for confirmation
         logAvailableUserData(adminUserManagementPage);
-       }
+    }
+
+    //add new user test method
+    protected void addNewUserTest(){
+        AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
+        //click 'add user' button
+        adminUserManagementPage.clickAddNewUserButton();
+    }
 
     //logger methods
     protected void logAvailableUserData(AdminUserManagementPage adminUserManagementPage){
