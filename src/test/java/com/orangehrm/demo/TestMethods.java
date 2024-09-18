@@ -77,16 +77,6 @@ public class TestMethods extends BaseTest{
         adminLoginPage.clickLoginButton();
     }
 
-    //admin login page web element assert
-    protected void isAdminLoginWebElementDisplayed(AdminLoginPage adminLoginPage){
-        //assert username input field is displayed
-        assertTrue(adminLoginPage.isUsernameInputFieldDisplayed(), "The username input field is not displayed");
-        //assert password input field is displayed
-        assertTrue(adminLoginPage.isPasswordInputFieldDisplayed(), "The password input field is not displayed");
-        //assert login button is displayed
-        assertTrue(adminLoginPage.isLoginButtonDisplayed(), "The login button is not displayed");
-    }
-
     //admin dashboard test methods
 
     //admin dropdown menu test method
@@ -228,7 +218,7 @@ public class TestMethods extends BaseTest{
         }
     }
 
-    //click 'admin management page' link test method
+    //click 'admin management' page link test method
     protected void clickAdminManagementPageLinkTest(){
         //assert the admin has logged into admin dashboard
         AdminDashBoardPage adminDashBoardPage = new AdminDashBoardPage(driver);
@@ -241,8 +231,29 @@ public class TestMethods extends BaseTest{
         assertEquals("Admin\n" + "User Management", adminDashBoardPage.getAdminDashboardPageTitle(), "The page title isn't displayed");
     }
 
+    //view 'admin management' page user table data test method
+    protected void viewAdminManagementPageUserTableTest(AdminUserManagementPage adminUserManagementPage){
+        //web element assert
+        isUserManagementPageWebElementDisplayed(adminUserManagementPage);
+        //view available user data
+        System.out.println("Available user data: " + "\n");
+        logger.info("Usernames: " + adminUserManagementPage.getTableUsername());
+        logger.info("User roles: " + adminUserManagementPage.getTableUserRole());
+        logger.info("Employee names: " + adminUserManagementPage.getTableEmployeeName());
+        logger.info("Employee status': " + adminUserManagementPage.getTableEmployeeStatus());
+    }
+
     //web page element assert methods
 
+    //admin login page web element assert
+    protected void isAdminLoginWebElementDisplayed(AdminLoginPage adminLoginPage){
+        //assert username input field is displayed
+        assertTrue(adminLoginPage.isUsernameInputFieldDisplayed(), "The username input field is not displayed");
+        //assert password input field is displayed
+        assertTrue(adminLoginPage.isPasswordInputFieldDisplayed(), "The password input field is not displayed");
+        //assert login button is displayed
+        assertTrue(adminLoginPage.isLoginButtonDisplayed(), "The login button is not displayed");
+    }
     //admin dashboard web element assert
     protected void isAdminDashboardPageWebElementDisplayed(AdminDashBoardPage adminDashBoardPage){
         //assert admin dropdown menu is displayed
@@ -250,7 +261,6 @@ public class TestMethods extends BaseTest{
         //assert admin management page aside link is displayed
         assertTrue(adminDashBoardPage.isAdminManagementAsideLinkDisplayed(), "The aside 'admin management page' link isn't displayed");
     }
-
     //admin change password page web element assert
     protected void isAdminChangePasswordPageWebElementDisplayed(AdminChangePasswordPage adminChangePasswordPage){
         //assert old password input field is displayed
@@ -263,5 +273,22 @@ public class TestMethods extends BaseTest{
         assertTrue(adminChangePasswordPage.isCancelButtonDisplayed(), "The cancel button isn't displayed");
         //assert submit button is displayed
         assertTrue(adminChangePasswordPage.isSubmitPasswordButtonDisplayed(), "The submit button isn't displayed");
+    }
+    //admin/user management page web element assert
+    protected void isUserManagementPageWebElementDisplayed(AdminUserManagementPage adminUserManagementPage){
+        //assert user table select user checkboxes are displayed
+        assertTrue(adminUserManagementPage.isTableSelectUserCheckboxDisplayed(), "The 'select' user checkbox is not displayed");
+        //assert user table usernames are displayed
+        assertTrue(adminUserManagementPage.isTableUsernameDisplayed(), "The username isn't displayed");
+        //assert user table user roles are displayed
+        assertTrue(adminUserManagementPage.isTableUserRoleDisplayed(), "The user roles isn't displayed");
+        //assert user table employee names are displayed
+        assertTrue(adminUserManagementPage.isTableEmployeeNameDisplayed(), "The employee name isn't displayed");
+        //assert user table employee status' are displayed
+        assertTrue(adminUserManagementPage.isTableEmployeeStatusDisplayed(), "The employee status isn't displayed");
+        //assert user table remove user buttons are displayed
+        assertTrue(adminUserManagementPage.isTableUserRemoveButtonDisplayed(), "The user remove button isn't displayed");
+        //assert user table edit user buttons are displayed
+        assertTrue(adminUserManagementPage.isTableEditUserButtonDisplayed(), "The user edit button isn't displayed");
     }
 }
