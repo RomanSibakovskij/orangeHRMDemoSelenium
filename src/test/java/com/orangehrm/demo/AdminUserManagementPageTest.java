@@ -51,4 +51,15 @@ public class AdminUserManagementPageTest extends TestMethods{
         addNewUserTest();
     }
 
+    //Test 004e -> add a new user into the admin management user table test 
+    @Test
+    @DisplayName("Add New User Into User Table - No Employee Name")
+    @Tag("Invalid_Add_New_User_Into_User_Table")
+    void addNewUserIntoTableNoEmployeeNameTest(){
+        AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
+        loginAsAdminTest(adminLoginPage);
+        clickAdminManagementPageLinkTest();
+        addNewUserNoEmployeeNameTest();
+    }
+
 }

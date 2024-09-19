@@ -39,6 +39,15 @@ public class AddNewUserPage extends BasePage{
     private String username;
     private String password;
 
+    //no singular input data
+    private String noEmployeeName;
+    private String noUsername;
+    private String noPassword;
+
+    //invalid input data
+    private String invalidEmployeeName;
+    private String invalidUsername;
+    private String invalidPassword;
 
     public AddNewUserPage(WebDriver driver) {
         super(driver);
@@ -90,6 +99,41 @@ public class AddNewUserPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
         wait.until(ExpectedConditions.visibilityOf(confirmPasswordInputField));
         confirmPasswordInputField.sendKeys(password);
+    }
+
+    //input user data getter (no singular input)
+    public void inputNewUserNoEmployeeNameData(){
+        noEmployeeName = "";
+        username = TestDataGenerator.generateRandomUsername(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Generated data for invalid new user: " + "\n");
+        logger.info("No employee name: " + employeeName);
+        logger.info("New username: " + username);
+        logger.info("New password: " + password);
+    }
+    public void inputNoEmployeeName() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.visibilityOf(employeeNameInputField));
+        employeeNameInputField.click();
+        employeeNameInputField.sendKeys(noEmployeeName);
+    }
+
+    //input user data getter (no singular input)
+    public void inputNewUserNoUsernameData(){
+        employeeName = TestDataGenerator.getRandomEmployeeName();
+        noUsername = "";
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Generated data for invalid new user: " + "\n");
+        logger.info("Employee name: " + employeeName);
+        logger.info("No username: " + noUsername);
+        logger.info("New password: " + password);
+    }
+    public void inputNoUsername() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.visibilityOf(usernameInputField));
+        usernameInputField.sendKeys(noUsername);
     }
 
     //add new user click button methods

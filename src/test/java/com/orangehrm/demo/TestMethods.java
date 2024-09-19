@@ -304,6 +304,43 @@ public class TestMethods extends BaseTest{
         }
     }
 
+    //invalid add new user test method (no employee name)
+    protected void addNewUserNoEmployeeNameTest(){
+        AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
+        //click 'add user' button
+        adminUserManagementPage.clickAddNewUserButton();
+        AddNewUserPage addNewUserPage = new AddNewUserPage(driver);
+        //click user role selector
+        addNewUserPage.clickUserRoleDropdownSelector();
+        //select ESS option
+        addNewUserPage.selectESSOption();
+        //click status selector
+        addNewUserPage.clickStatusDropdownSelector();
+        //select 'enabled' option
+        addNewUserPage.selectEnabledOption();
+        //input new user data
+        addNewUserPage.inputNewUserNoEmployeeNameData();
+        addNewUserPage.inputUsername();
+        addNewUserPage.inputNoEmployeeName();
+        addNewUserPage.inputPassword();
+        addNewUserPage.inputConfirmPassword();
+        //log new user data
+        logNewUserData(addNewUserPage);
+        //click save button
+        addNewUserPage.clickAddNewUser();
+        //log updated user data (after the user creation)
+        logAvailableUserData(adminUserManagementPage);
+        //retrieve the list of employee names from the user management table
+        List<String> employeeNames = adminUserManagementPage.getTableEmployeeName();
+        //check if the new user appears in the list of employee names
+        String newEmployeeName = addNewUserPage.getEmployeeName();
+        if (!employeeNames.contains(newEmployeeName)) {
+            logger.error("The webpage didn't allow new user creation without employee name: " + newEmployeeName);
+        } else {
+            logger.info("The webpage allows new user creation without employee name: " + newEmployeeName);
+        }
+    }
+
     //logger methods
     protected void logAvailableUserData(AdminUserManagementPage adminUserManagementPage){
         System.out.println("Available user data: " + "\n");
