@@ -335,9 +335,46 @@ public class TestMethods extends BaseTest{
         //check if the new user appears in the list of employee names
         String newEmployeeName = addNewUserPage.getEmployeeName();
         if (!employeeNames.contains(newEmployeeName)) {
-            logger.error("The webpage didn't allow new user creation without employee name: " + newEmployeeName);
+            logger.info("The webpage didn't allow new user creation without employee name: " + newEmployeeName);
         } else {
-            logger.info("The webpage allows new user creation without employee name: " + newEmployeeName);
+            logger.error("The webpage allows new user creation without employee name: " + newEmployeeName);
+        }
+    }
+
+    //invalid add new user test method (no username)
+    protected void addNewUserNoUsernameTest(){
+        AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
+        //click 'add user' button
+        adminUserManagementPage.clickAddNewUserButton();
+        AddNewUserPage addNewUserPage = new AddNewUserPage(driver);
+        //click user role selector
+        addNewUserPage.clickUserRoleDropdownSelector();
+        //select ESS option
+        addNewUserPage.selectESSOption();
+        //click status selector
+        addNewUserPage.clickStatusDropdownSelector();
+        //select 'enabled' option
+        addNewUserPage.selectEnabledOption();
+        //input new user data
+        addNewUserPage.inputNewUserNoUsernameData();
+        addNewUserPage.inputNoUsername();
+        addNewUserPage.inputEmployeeName();
+        addNewUserPage.inputPassword();
+        addNewUserPage.inputConfirmPassword();
+        //log new user data
+        logNewUserData(addNewUserPage);
+        //click save button
+        addNewUserPage.clickAddNewUser();
+        //log updated user data (after the user creation)
+        logAvailableUserData(adminUserManagementPage);
+        //retrieve the list of usernames from the user management table
+        List<String> employeeNames = adminUserManagementPage.getTableUsername();
+        //check if the new user appears in the list of employee names
+        String newUsername = addNewUserPage.getUsername();
+        if (!employeeNames.contains(newUsername)) {
+            logger.info("The webpage didn't allow new user creation without username: " + newUsername);
+        } else {
+            logger.error("The webpage allows new user creation without username: " + newUsername);
         }
     }
 

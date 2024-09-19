@@ -51,7 +51,7 @@ public class AdminUserManagementPageTest extends TestMethods{
         addNewUserTest();
     }
 
-    //Test 004e -> add a new user into the admin management user table test 
+    //Test 004e -> add a new user into the admin management user table test (no employee name)
     @Test
     @DisplayName("Add New User Into User Table - No Employee Name")
     @Tag("Invalid_Add_New_User_Into_User_Table")
@@ -60,6 +60,17 @@ public class AdminUserManagementPageTest extends TestMethods{
         loginAsAdminTest(adminLoginPage);
         clickAdminManagementPageLinkTest();
         addNewUserNoEmployeeNameTest();
+    }
+
+    //Test 004f -> add a new user into the admin management user table test (no username)
+    @Test
+    @DisplayName("Add New User Into User Table - No Username")
+    @Tag("Invalid_Add_New_User_Into_User_Table")
+    void addNewUserIntoTableNoUsernameTest(){
+        AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
+        loginAsAdminTest(adminLoginPage);
+        clickAdminManagementPageLinkTest();
+        addNewUserNoUsernameTest();
     }
 
 }
