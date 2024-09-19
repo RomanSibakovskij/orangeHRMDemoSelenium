@@ -51,4 +51,40 @@ public class AdminUserManagementNewUserPageTest extends TestMethods{
         addNewUserNoPasswordTest();
     }
 
+    //Test 004h -> add a new user into the admin management user table test (invalid employee name)
+    @Test
+    @DisplayName("Add New User Into User Table - Invalid Employee Name")
+    @Tag("Invalid_Add_New_User_Into_User_Table")
+    @Tag("Invalid_Singular_Input")
+    void addNewUserIntoTableInvalidEmployeeTest(){
+        AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
+        loginAsAdminTest(adminLoginPage);
+        clickAdminManagementPageLinkTest();
+        addNewUserInvalidEmployeeNameTest();
+    }
+
+    //Test 004i -> add a new user into the admin management user table test (too short username)
+    @Test
+    @DisplayName("Add New User Into User Table - Too Short Username")
+    @Tag("Invalid_Add_New_User_Into_User_Table")
+    @Tag("Too_Short_Singular_Input")
+    void addNewUserIntoTableTooShortUsernameTest(){
+        AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
+        loginAsAdminTest(adminLoginPage);
+        clickAdminManagementPageLinkTest();
+        addNewUserTooShortUsernameTest();
+    }
+
+    //Test 004j -> add a new user into the admin management user table test (too long username)
+    @Test
+    @DisplayName("Add New User Into User Table - Too Long Username")
+    @Tag("Invalid_Add_New_User_Into_User_Table")
+    @Tag("Too_Long_Singular_Input")
+    void addNewUserIntoTableTooLongUsernameTest(){
+        AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
+        loginAsAdminTest(adminLoginPage);
+        clickAdminManagementPageLinkTest();
+        addNewUserTooLongUsernameTest();
+    }
+
 }

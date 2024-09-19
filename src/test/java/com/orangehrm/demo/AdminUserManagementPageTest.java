@@ -39,5 +39,5 @@ public class AdminUserManagementPageTest extends TestMethods{
         AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
         abortRemoveSelectedUserFromUserTableTest(adminUserManagementPage);
     }
-    
+
 }

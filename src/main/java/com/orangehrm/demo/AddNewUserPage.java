@@ -33,6 +33,9 @@ public class AddNewUserPage extends BasePage{
     private WebElement cancelAddNewUserButton;
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement addNewUserButton;
+    //invalid singular input (length) error message web element
+    @FindBy(css = ".oxd-form .oxd-grid-item--gutters:nth-of-type(4) .oxd-input-field-error-message")
+    private WebElement invalidLengthMessage;
 
     //user input data
     private String employeeName;
@@ -46,7 +49,8 @@ public class AddNewUserPage extends BasePage{
 
     //invalid input data
     private String invalidEmployeeName;
-    private String invalidUsername;
+    private String tooShortUsername;
+    private String tooLongUsername;
     private String invalidPassword;
 
     public AddNewUserPage(WebDriver driver) {
@@ -101,6 +105,7 @@ public class AddNewUserPage extends BasePage{
         confirmPasswordInputField.sendKeys(password);
     }
 
+    //invalid input methods
     //input user data getter (no singular input)
     public void inputNewUserNoEmployeeNameData(){
         noEmployeeName = "";
@@ -153,6 +158,58 @@ public class AddNewUserPage extends BasePage{
         passwordInputField.sendKeys(noPassword);
     }
 
+    //input user data getter (invalid singular input)
+    public void inputNewUserInvalidEmployeeNameData(){
+        invalidEmployeeName = "!@#^^&*$%%";
+        username = TestDataGenerator.generateRandomUsername(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Generated data for invalid new user: " + "\n");
+        logger.info("Invalid employee name: " + invalidEmployeeName);
+        logger.info("New username: " + username);
+        logger.info("New password: " + password);
+    }
+    public void inputInvalidEmployeeName() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.visibilityOf(employeeNameInputField));
+        employeeNameInputField.click();
+        employeeNameInputField.sendKeys(invalidEmployeeName);
+    }
+
+    //input user data getter (invalid singular input)
+    public void inputNewUserTooShortUsernameData(){
+        employeeName = TestDataGenerator.getRandomEmployeeName();
+        tooShortUsername = TestDataGenerator.generateRandomUsername(4); //too short
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Generated data for invalid new user: " + "\n");
+        logger.info("Employee name: " + employeeName);
+        logger.info("Too short username: " + tooShortUsername);
+        logger.info("New password: " + password);
+    }
+    public void inputTooShortUsername() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.visibilityOf(usernameInputField));
+        usernameInputField.sendKeys(tooShortUsername);
+    }
+
+    //input user data getter (invalid singular input)
+    public void inputNewUserTooLongUsernameData(){
+        employeeName = TestDataGenerator.getRandomEmployeeName();
+        tooLongUsername = TestDataGenerator.generateRandomUsername(41); //too long
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Generated data for invalid new user: " + "\n");
+        logger.info("Employee name: " + employeeName);
+        logger.info("Too long username: " + tooLongUsername);
+        logger.info("New password: " + password);
+    }
+    public void inputTooLongUsername() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.visibilityOf(usernameInputField));
+        usernameInputField.sendKeys(tooLongUsername);
+    }
+
     //add new user click button methods
     public void clickCancelButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
@@ -179,4 +236,7 @@ public class AddNewUserPage extends BasePage{
     public String getEmployeeName(){return employeeName;}
     public String getUsername(){return username;}
     public String getPassword(){return password;}
+
+    //invalid length message test getter
+    public String getInvalidLengthMessage(){return invalidLengthMessage.getText();}
 }

@@ -330,15 +330,8 @@ public class TestMethods extends BaseTest{
         addNewUserPage.clickAddNewUser();
         //log updated user data (after the user creation)
         logAvailableUserData(adminUserManagementPage);
-        //retrieve the list of employee names from the user management table
-        List<String> employeeNames = adminUserManagementPage.getTableEmployeeName();
-        //check if the new user appears in the list of employee names
-        String newEmployeeName = addNewUserPage.getEmployeeName();
-        if (!employeeNames.contains(newEmployeeName)) {
-            logger.info("The webpage didn't allow new user creation without employee name: " + newEmployeeName);
-        } else {
-            logger.error("The webpage allows new user creation without employee name: " + newEmployeeName);
-        }
+        //log invalid user data
+        logUserDataWithInvalidEmployeeName(addNewUserPage);
     }
 
     //invalid add new user test method (no username)
@@ -367,15 +360,8 @@ public class TestMethods extends BaseTest{
         addNewUserPage.clickAddNewUser();
         //log updated user data (after the user creation)
         logAvailableUserData(adminUserManagementPage);
-        //retrieve the list of usernames from the user management table
-        List<String> usernames = adminUserManagementPage.getTableUsername();
-        //check if the new user appears in the list of employee names
-        String newUsername = addNewUserPage.getUsername();
-        if (!usernames.contains(newUsername)) {
-            logger.info("The webpage didn't allow new user creation without username: " + newUsername);
-        } else {
-            logger.error("The webpage allows new user creation without username: " + newUsername);
-        }
+        //log invalid user data
+        logUserDataWithInvalidUsername(addNewUserPage);
     }
 
     //invalid add new user test method (no password)
@@ -403,15 +389,102 @@ public class TestMethods extends BaseTest{
         addNewUserPage.clickAddNewUser();
         //log updated user data (after the user creation)
         logAvailableUserData(adminUserManagementPage);
-        //retrieve the list of usernames from the user management table
-        List<String> employeeNames = adminUserManagementPage.getTableEmployeeName();
-        //check if the new user appears in the list of employee names
-        String newEmployeeName = addNewUserPage.getEmployeeName();
-        if (!employeeNames.contains(newEmployeeName)) {
-            logger.info("The webpage didn't allow new user creation without password: " + newEmployeeName);
-        } else {
-            logger.error("The webpage allows new user creation without password: " + newEmployeeName);
-        }
+        //log invalid user data
+        logUserDataWithInvalidEmployeeName(addNewUserPage);
+    }
+
+    //invalid add new user test method (no employee name) //the console logs 'null' for some reason
+    protected void addNewUserInvalidEmployeeNameTest(){
+        AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
+        //click 'add user' button
+        adminUserManagementPage.clickAddNewUserButton();
+        AddNewUserPage addNewUserPage = new AddNewUserPage(driver);
+        //click user role selector
+        addNewUserPage.clickUserRoleDropdownSelector();
+        //select ESS option
+        addNewUserPage.selectESSOption();
+        //click status selector
+        addNewUserPage.clickStatusDropdownSelector();
+        //select 'enabled' option
+        addNewUserPage.selectEnabledOption();
+        //input new user data
+        addNewUserPage.inputNewUserInvalidEmployeeNameData();
+        addNewUserPage.inputUsername();
+        addNewUserPage.inputInvalidEmployeeName();
+        addNewUserPage.inputPassword();
+        addNewUserPage.inputConfirmPassword();
+        //log new user data
+        logNewUserData(addNewUserPage);
+        //click save button
+        addNewUserPage.clickAddNewUser();
+        //log updated user data (after the user creation)
+        logAvailableUserData(adminUserManagementPage);
+        //log invalid user data
+        logUserDataWithInvalidEmployeeName(addNewUserPage);
+    }
+
+    //invalid add new user test method (too short username)
+    protected void addNewUserTooShortUsernameTest(){
+        AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
+        //click 'add user' button
+        adminUserManagementPage.clickAddNewUserButton();
+        AddNewUserPage addNewUserPage = new AddNewUserPage(driver);
+        //click user role selector
+        addNewUserPage.clickUserRoleDropdownSelector();
+        //select ESS option
+        addNewUserPage.selectESSOption();
+        //click status selector
+        addNewUserPage.clickStatusDropdownSelector();
+        //select 'enabled' option
+        addNewUserPage.selectEnabledOption();
+        //input new user data
+        addNewUserPage.inputNewUserTooShortUsernameData();
+        addNewUserPage.inputTooShortUsername();
+        addNewUserPage.inputEmployeeName();
+        addNewUserPage.inputPassword();
+        addNewUserPage.inputConfirmPassword();
+        //log new user data
+        logNewUserData(addNewUserPage);
+        //assert the expected error message is displayed
+        assertEquals("Should be at least 5 characters", addNewUserPage.getInvalidLengthMessage(), "The invalid length message isn't displayed");
+        //click save button
+        addNewUserPage.clickAddNewUser();
+        //log updated user data (after the user creation)
+        logAvailableUserData(adminUserManagementPage);
+        //log invalid user data
+        logUserDataWithInvalidUsername(addNewUserPage);
+    }
+
+    //invalid add new user test method (too long username)
+    protected void addNewUserTooLongUsernameTest(){
+        AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
+        //click 'add user' button
+        adminUserManagementPage.clickAddNewUserButton();
+        AddNewUserPage addNewUserPage = new AddNewUserPage(driver);
+        //click user role selector
+        addNewUserPage.clickUserRoleDropdownSelector();
+        //select ESS option
+        addNewUserPage.selectESSOption();
+        //click status selector
+        addNewUserPage.clickStatusDropdownSelector();
+        //select 'enabled' option
+        addNewUserPage.selectEnabledOption();
+        //input new user data
+        addNewUserPage.inputNewUserTooLongUsernameData();
+        addNewUserPage.inputTooLongUsername();
+        addNewUserPage.inputEmployeeName();
+        addNewUserPage.inputPassword();
+        addNewUserPage.inputConfirmPassword();
+        //log new user data
+        logNewUserData(addNewUserPage);
+        //assert the expected error message is displayed
+        assertEquals("Should not exceed 40 characters", addNewUserPage.getInvalidLengthMessage(), "The invalid length message isn't displayed");
+        //click save button
+        addNewUserPage.clickAddNewUser();
+        //log updated user data (after the user creation)
+        logAvailableUserData(adminUserManagementPage);
+        //log invalid user data
+        logUserDataWithInvalidUsername(addNewUserPage);
     }
 
     //logger methods
@@ -430,6 +503,34 @@ public class TestMethods extends BaseTest{
         logger.info("New employee name: " + addNewUserPage.getEmployeeName());
         logger.info("New user password: " + addNewUserPage.getPassword());
         logger.info("New user confirm password: " + addNewUserPage.getPassword());
+    }
+
+    //invalid data logger (with invalid username)
+    protected void logUserDataWithInvalidUsername(AddNewUserPage addNewUserPage){
+        AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
+        //retrieve the list of usernames from the user management table
+        List<String> usernames = adminUserManagementPage.getTableUsername();
+        //check if the new user appears in the list of employee names
+        String newUsername = addNewUserPage.getUsername();
+        if (!usernames.contains(newUsername)) {
+            logger.info("The webpage didn't allow new user creation without (or invalid) username: " + newUsername);
+        } else {
+            logger.error("The webpage allows new user creation without (or invalid) username: " + newUsername);
+        }
+    }
+
+    //invalid data logger (with invalid employee name)
+    protected void logUserDataWithInvalidEmployeeName(AddNewUserPage addNewUserPage){
+        AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
+        //retrieve the list of employee names from the user management table
+        List<String> employeeNames = adminUserManagementPage.getTableEmployeeName();
+        //check if the new user appears in the list of employee names
+        String newEmployeeName = addNewUserPage.getEmployeeName();
+        if (!employeeNames.contains(newEmployeeName)) {
+            logger.info("The webpage didn't allow new user creation with invalid (or without one) employee name: " + newEmployeeName);
+        } else {
+            logger.error("The webpage allows new user creation with invalid (or without one) employee name: " + newEmployeeName);
+        }
     }
 
     //web page element assert methods
