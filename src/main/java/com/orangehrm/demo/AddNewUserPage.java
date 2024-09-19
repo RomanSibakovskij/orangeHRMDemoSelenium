@@ -56,6 +56,7 @@ public class AddNewUserPage extends BasePage{
     private String tooLongUsername;
     private String tooShortPassword;
     private String tooLongPassword;
+    private String invalidPassword;
     private String mismatchingConfirmPassword;
 
     public AddNewUserPage(WebDriver driver) {
@@ -247,6 +248,23 @@ public class AddNewUserPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
         wait.until(ExpectedConditions.visibilityOf(passwordInputField));
         passwordInputField.sendKeys(tooLongPassword);
+    }
+
+    //input user data getter (invalid singular input)
+    public void inputNewUserInvalidPasswordData(){
+        employeeName = TestDataGenerator.getRandomEmployeeName();
+        username = TestDataGenerator.generateRandomUsername(6);
+        invalidPassword = "asdfasdffsdfg";
+
+        System.out.println("Generated data for invalid new user: " + "\n");
+        logger.info("Employee name: " + employeeName);
+        logger.info("New username: " + username);
+        logger.info("Invalid password: " + invalidPassword);
+    }
+    public void inputInvalidPassword() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.visibilityOf(passwordInputField));
+        passwordInputField.sendKeys(invalidPassword);
     }
 
     //add new user click button methods

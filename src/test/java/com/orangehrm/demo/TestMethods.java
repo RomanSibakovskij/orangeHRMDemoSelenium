@@ -549,6 +549,37 @@ public class TestMethods extends BaseTest{
         logUserDataWithInvalidEmployeeName(addNewUserPage);
     }
 
+    //invalid add new user test method (invalid password)
+    protected void addNewUserInvalidPasswordTest(){
+        AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
+        //click 'add user' button
+        adminUserManagementPage.clickAddNewUserButton();
+        AddNewUserPage addNewUserPage = new AddNewUserPage(driver);
+        //click user role selector
+        addNewUserPage.clickUserRoleDropdownSelector();
+        //select ESS option
+        addNewUserPage.selectESSOption();
+        //click status selector
+        addNewUserPage.clickStatusDropdownSelector();
+        //select 'enabled' option
+        addNewUserPage.selectEnabledOption();
+        //input new user data
+        addNewUserPage.inputNewUserInvalidPasswordData();
+        addNewUserPage.inputUsername();
+        addNewUserPage.inputEmployeeName();
+        addNewUserPage.inputInvalidPassword();
+        //log new user data
+        logNewUserData(addNewUserPage);
+        //assert the expected error message is displayed
+        assertEquals("Your password must contain minimum 1 number", addNewUserPage.getInvalidPasswordLengthMessage(), "The invalid password length message isn't displayed");
+        //click save button
+        addNewUserPage.clickAddNewUser();
+        //log updated user data (after the user creation)
+        logAvailableUserData(adminUserManagementPage);
+        //log invalid user data
+        logUserDataWithInvalidEmployeeName(addNewUserPage);
+    }
+
     //logger methods
     protected void logAvailableUserData(AdminUserManagementPage adminUserManagementPage){
         System.out.println("Available user data: " + "\n");
