@@ -446,7 +446,7 @@ public class TestMethods extends BaseTest{
         //log new user data
         logNewUserData(addNewUserPage);
         //assert the expected error message is displayed
-        assertEquals("Should be at least 5 characters", addNewUserPage.getInvalidLengthMessage(), "The invalid length message isn't displayed");
+        assertEquals("Should be at least 5 characters", addNewUserPage.getInvalidUsernameLengthMessage(), "The invalid username length message isn't displayed");
         //click save button
         addNewUserPage.clickAddNewUser();
         //log updated user data (after the user creation)
@@ -478,13 +478,44 @@ public class TestMethods extends BaseTest{
         //log new user data
         logNewUserData(addNewUserPage);
         //assert the expected error message is displayed
-        assertEquals("Should not exceed 40 characters", addNewUserPage.getInvalidLengthMessage(), "The invalid length message isn't displayed");
+        assertEquals("Should not exceed 40 characters", addNewUserPage.getInvalidUsernameLengthMessage(), "The invalid username length message isn't displayed");
         //click save button
         addNewUserPage.clickAddNewUser();
         //log updated user data (after the user creation)
         logAvailableUserData(adminUserManagementPage);
         //log invalid user data
         logUserDataWithInvalidUsername(addNewUserPage);
+    }
+
+    //invalid add new user test method (too short password)
+    protected void addNewUserTooShortPasswordTest(){
+        AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
+        //click 'add user' button
+        adminUserManagementPage.clickAddNewUserButton();
+        AddNewUserPage addNewUserPage = new AddNewUserPage(driver);
+        //click user role selector
+        addNewUserPage.clickUserRoleDropdownSelector();
+        //select ESS option
+        addNewUserPage.selectESSOption();
+        //click status selector
+        addNewUserPage.clickStatusDropdownSelector();
+        //select 'enabled' option
+        addNewUserPage.selectEnabledOption();
+        //input new user data
+        addNewUserPage.inputNewUserTooShortPasswordData();
+        addNewUserPage.inputUsername();
+        addNewUserPage.inputEmployeeName();
+        addNewUserPage.inputTooShortPassword();
+        //log new user data
+        logNewUserData(addNewUserPage);
+        //assert the expected error message is displayed
+        assertEquals("Should have at least 7 characters", addNewUserPage.getInvalidPasswordLengthMessage(), "The invalid password length message isn't displayed");
+        //click save button
+        addNewUserPage.clickAddNewUser();
+        //log updated user data (after the user creation)
+        logAvailableUserData(adminUserManagementPage);
+        //log invalid user data
+        logUserDataWithInvalidEmployeeName(addNewUserPage);
     }
 
     //logger methods

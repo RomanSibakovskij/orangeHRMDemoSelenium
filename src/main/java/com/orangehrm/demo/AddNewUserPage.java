@@ -33,9 +33,12 @@ public class AddNewUserPage extends BasePage{
     private WebElement cancelAddNewUserButton;
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement addNewUserButton;
-    //invalid singular input (length) error message web element
+    //invalid singular input (username length) error message web element
     @FindBy(css = ".oxd-form .oxd-grid-item--gutters:nth-of-type(4) .oxd-input-field-error-message")
-    private WebElement invalidLengthMessage;
+    private WebElement invalidUsernameLengthMessage;
+    //invalid singular input(password length) error message web element
+    @FindBy(css = ".user-password-cell .oxd-input-field-error-message")
+    private WebElement invalidPasswordLengthMessage;
 
     //user input data
     private String employeeName;
@@ -51,7 +54,9 @@ public class AddNewUserPage extends BasePage{
     private String invalidEmployeeName;
     private String tooShortUsername;
     private String tooLongUsername;
-    private String invalidPassword;
+    private String tooShortPassword;
+    private String tooLongPassword;
+    private String mismatchingConfirmPassword;
 
     public AddNewUserPage(WebDriver driver) {
         super(driver);
@@ -210,6 +215,23 @@ public class AddNewUserPage extends BasePage{
         usernameInputField.sendKeys(tooLongUsername);
     }
 
+    //input user data getter (invalid singular input)
+    public void inputNewUserTooShortPasswordData(){
+        employeeName = TestDataGenerator.getRandomEmployeeName();
+        username = TestDataGenerator.generateRandomUsername(6);
+        tooShortPassword = "Akg721";
+
+        System.out.println("Generated data for invalid new user: " + "\n");
+        logger.info("Employee name: " + employeeName);
+        logger.info("New username: " + username);
+        logger.info("Too short password: " + tooShortPassword);
+    }
+    public void inputTooShortPassword() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.visibilityOf(passwordInputField));
+        passwordInputField.sendKeys(tooShortPassword);
+    }
+
     //add new user click button methods
     public void clickCancelButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
@@ -237,6 +259,7 @@ public class AddNewUserPage extends BasePage{
     public String getUsername(){return username;}
     public String getPassword(){return password;}
 
-    //invalid length message test getter
-    public String getInvalidLengthMessage(){return invalidLengthMessage.getText();}
+    //invalid length message test getters
+    public String getInvalidUsernameLengthMessage(){return invalidUsernameLengthMessage.getText();}
+    public String getInvalidPasswordLengthMessage(){return invalidPasswordLengthMessage.getText();}
 }
