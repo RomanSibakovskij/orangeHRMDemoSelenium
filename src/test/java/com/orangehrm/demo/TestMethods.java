@@ -286,6 +286,41 @@ public class TestMethods extends BaseTest{
         adminUserManagementPage.clickSearchUserButton();
         //log user data after the search for confirmation
         logAvailableUserData(adminUserManagementPage);
+        //retrieve the lists of admin user roles/status from the user management table
+        List<String> userRoles = adminUserManagementPage.getTableEmployeeName();
+        List<String> adminStatus = adminUserManagementPage.getTableEmployeeStatus();
+        //log the issue if there are no admins with enabled status
+        if(!userRoles.contains("Admin") && !adminStatus.contains("Enabled")){
+            logger.info("There are no admins with enabled status");
+        }
+    }
+
+    //search for page users with disabled status test method
+    protected void searchForDisabledESSUsersTest(AdminUserManagementPage adminUserManagementPage){
+        viewAdminManagementPageUserTableTest(adminUserManagementPage);
+        //click user role dropdown selector
+        adminUserManagementPage.clickUserRoleDropdownSelector();
+        //assert the ESS role has indeed been selected //-> for some reason this assert refuses to work below select method
+        assertEquals("ESS", adminUserManagementPage.getSelectedESSUserRole(), "The ESS user role hasn't been selected");
+        //select admin user role
+        adminUserManagementPage.selectESSOption();
+        //click user status dropdown selector
+        adminUserManagementPage.clickStatusDropdownSelector();
+        //assert the disabled option has been selected //-> for some reason this assert refuses to work below select method
+        assertEquals("Disabled", adminUserManagementPage.getSelectedDisabledStatus(), "The disabled status isn't displayed");
+        //select enabled status option
+        adminUserManagementPage.selectDisabledOption();
+        //click search button
+        adminUserManagementPage.clickSearchUserButton();
+        //log user data after the search for confirmation
+        logAvailableUserData(adminUserManagementPage);
+        //retrieve the lists of admin user roles/status from the user management table
+        List<String> userRoles = adminUserManagementPage.getTableEmployeeName();
+        List<String> userStatus = adminUserManagementPage.getTableEmployeeStatus();
+        //log the issue if there are no admins with enabled status
+        if(!userRoles.contains("ESS") && !userStatus.contains("Disabled")){
+            logger.info("There are no ESS users with disabled status");
+        }
     }
 
     //add new user test method

@@ -52,4 +52,16 @@ public class AdminUserManagementPageTest extends TestMethods{
         searchForEnabledAdminsTest(adminUserManagementPage);
     }
 
+    //Test 005a -> search for ESS users with disabled status test
+    @Test
+    @DisplayName("Search For Admins with Enabled Status")
+    @Tag("Search_For_Admins")
+    void searchForDisabledESSUsersTest(){
+        AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
+        loginAsAdminTest(adminLoginPage);
+        clickAdminManagementPageLinkTest();
+        AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
+        searchForDisabledESSUsersTest(adminUserManagementPage);
+    }
+
 }

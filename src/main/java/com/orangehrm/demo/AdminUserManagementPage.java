@@ -46,6 +46,9 @@ public class AdminUserManagementPage extends BasePage{
     //admin option web element
     @FindBy(xpath = "(//div[@role='listbox']//child::div)[2]")
     private WebElement adminOption;
+    //ESS option web element
+    @FindBy(xpath = "(//div[@role='listbox']//child::div)[3]")
+    private WebElement essOption;
     @FindBy(xpath = "//div[@class='oxd-form-row']/div/div[3]")
     private WebElement employeeNameSearchBar;
     @FindBy(xpath = "//div[@class='oxd-form-row']/div/div[4]")
@@ -53,6 +56,9 @@ public class AdminUserManagementPage extends BasePage{
     //enabled status option web element
     @FindBy(xpath = "(//div[@role='listbox']//child::div)[2]")
     private WebElement enabledStatusOption;
+    //disabled status option web element
+    @FindBy(xpath = "(//div[@role='listbox']//child::div)[3]")
+    private WebElement disabledStatusOption;
     @FindBy(xpath = "//button[@class='oxd-button oxd-button--medium oxd-button--ghost']")
     private WebElement resetSearchButton;
     @FindBy(xpath = "//button[@type='submit']")
@@ -152,6 +158,7 @@ public class AdminUserManagementPage extends BasePage{
         userRoleDropdownSelector.click();
     }
     public void selectAdminOption() {adminOption.click();}
+    public void selectESSOption() {essOption.click();}
 
     //user status dropdown selector
     public void clickStatusDropdownSelector() {
@@ -160,6 +167,7 @@ public class AdminUserManagementPage extends BasePage{
         statusDropdownSelector.click();
     }
     public void selectEnabledOption() {enabledStatusOption.click();}
+    public void selectDisabledOption() {disabledStatusOption.click();}
 
     //search user button click method
     public void clickSearchUserButton() {
@@ -252,5 +260,7 @@ public class AdminUserManagementPage extends BasePage{
 
     //user role/status getters
     public String getSelectedAdminUserRole(){return adminOption.getText();}
+    public String getSelectedESSUserRole(){return essOption.getText();}
     public String getSelectedEnabledStatus(){return enabledStatusOption.getText();}
+    public String getSelectedDisabledStatus(){return disabledStatusOption.getText();}
 }
