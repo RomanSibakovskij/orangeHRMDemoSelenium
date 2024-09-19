@@ -64,4 +64,16 @@ public class AdminUserManagementPageTest extends TestMethods{
         searchForDisabledESSUsersTest(adminUserManagementPage);
     }
 
+    //Test 005b -> cancel the search for admins with enabled status test
+    @Test
+    @DisplayName("Cancel The Search For Admins with Enabled Status")
+    @Tag("Cancel_Search_For_Admins")
+    void cancelSearchForEnabledAdminsTest(){
+        AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
+        loginAsAdminTest(adminLoginPage);
+        clickAdminManagementPageLinkTest();
+        AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
+        cancelSearchForEnabledAdminsTest(adminUserManagementPage);
+    }
+
 }
