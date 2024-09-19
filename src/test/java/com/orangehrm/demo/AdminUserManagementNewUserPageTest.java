@@ -123,4 +123,16 @@ public class AdminUserManagementNewUserPageTest extends TestMethods{
         addNewUserInvalidPasswordTest();
     }
 
+    //Test 004n -> add a new user into the admin management user table test (mismatch confirm password)
+    @Test
+    @DisplayName("Add New User Into User Table - Mismatch Confirm Password")
+    @Tag("Invalid_Add_New_User_Into_User_Table")
+    @Tag("Mismatched_Singular_Input")
+    void addNewUserIntoTableMismatchConfirmPasswordTest(){
+        AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
+        loginAsAdminTest(adminLoginPage);
+        clickAdminManagementPageLinkTest();
+        addNewUserMismatchingConfirmPasswordTest();
+    }
+
 }

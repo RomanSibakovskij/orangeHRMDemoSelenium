@@ -514,8 +514,6 @@ public class TestMethods extends BaseTest{
         addNewUserPage.clickAddNewUser();
         //log updated user data (after the user creation)
         logAvailableUserData(adminUserManagementPage);
-        //log invalid user data
-        logUserDataWithInvalidEmployeeName(addNewUserPage);
     }
 
     //invalid add new user test method (too long password)
@@ -545,8 +543,6 @@ public class TestMethods extends BaseTest{
         addNewUserPage.clickAddNewUser();
         //log updated user data (after the user creation)
         logAvailableUserData(adminUserManagementPage);
-        //log invalid user data
-        logUserDataWithInvalidEmployeeName(addNewUserPage);
     }
 
     //invalid add new user test method (invalid password)
@@ -576,8 +572,37 @@ public class TestMethods extends BaseTest{
         addNewUserPage.clickAddNewUser();
         //log updated user data (after the user creation)
         logAvailableUserData(adminUserManagementPage);
-        //log invalid user data
-        logUserDataWithInvalidEmployeeName(addNewUserPage);
+    }
+
+    //invalid add new user test method (mismatching confirm password)
+    protected void addNewUserMismatchingConfirmPasswordTest(){
+        AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
+        //click 'add user' button
+        adminUserManagementPage.clickAddNewUserButton();
+        AddNewUserPage addNewUserPage = new AddNewUserPage(driver);
+        //click user role selector
+        addNewUserPage.clickUserRoleDropdownSelector();
+        //select ESS option
+        addNewUserPage.selectESSOption();
+        //click status selector
+        addNewUserPage.clickStatusDropdownSelector();
+        //select 'enabled' option
+        addNewUserPage.selectEnabledOption();
+        //input new user data
+        addNewUserPage.inputNewUserData();
+        addNewUserPage.inputUsername();
+        addNewUserPage.inputEmployeeName();
+        addNewUserPage.inputPassword();
+        //mismatch confirm password
+        addNewUserPage.inputMismatchingConfirmPassword();
+        //log new user data
+        logNewUserData(addNewUserPage);
+        //assert the expected error message is displayed
+        assertEquals("Passwords do not match", addNewUserPage.getMismatchConfirmPasswordMessage(), "The mismatch confirm password message isn't displayed");
+        //click save button
+        addNewUserPage.clickAddNewUser();
+        //log updated user data (after the user creation)
+        logAvailableUserData(adminUserManagementPage);
     }
 
     //logger methods

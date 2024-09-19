@@ -39,6 +39,9 @@ public class AddNewUserPage extends BasePage{
     //invalid singular input(password length) error message web element
     @FindBy(css = ".user-password-cell .oxd-input-field-error-message")
     private WebElement invalidPasswordLengthMessage;
+    //invalid singular input(mismatched confirm password) error message web element
+    @FindBy(css = ".user-password-row .oxd-grid-item--gutters:nth-of-type(2) .oxd-input-field-error-message")
+    private WebElement mismatchConfirmPasswordMessage;
 
     //user input data
     private String employeeName;
@@ -57,7 +60,7 @@ public class AddNewUserPage extends BasePage{
     private String tooShortPassword;
     private String tooLongPassword;
     private String invalidPassword;
-    private String mismatchingConfirmPassword;
+    private String mismatchingConfirmPassword = "kkfredfghd";
 
     public AddNewUserPage(WebDriver driver) {
         super(driver);
@@ -266,6 +269,11 @@ public class AddNewUserPage extends BasePage{
         wait.until(ExpectedConditions.visibilityOf(passwordInputField));
         passwordInputField.sendKeys(invalidPassword);
     }
+    public void inputMismatchingConfirmPassword() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.visibilityOf(confirmPasswordInputField));
+        confirmPasswordInputField.sendKeys(mismatchingConfirmPassword);
+    }
 
     //add new user click button methods
     public void clickCancelButton() {
@@ -297,4 +305,5 @@ public class AddNewUserPage extends BasePage{
     //invalid length message test getters
     public String getInvalidUsernameLengthMessage(){return invalidUsernameLengthMessage.getText();}
     public String getInvalidPasswordLengthMessage(){return invalidPasswordLengthMessage.getText();}
+    public String getMismatchConfirmPasswordMessage(){return mismatchConfirmPasswordMessage.getText();}
 }
