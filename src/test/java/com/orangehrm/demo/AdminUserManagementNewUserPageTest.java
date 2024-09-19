@@ -99,4 +99,16 @@ public class AdminUserManagementNewUserPageTest extends TestMethods{
         addNewUserTooShortPasswordTest();
     }
 
+    //Test 004l -> add a new user into the admin management user table test (too long password)
+    @Test
+    @DisplayName("Add New User Into User Table - Too Long Password")
+    @Tag("Invalid_Add_New_User_Into_User_Table")
+    @Tag("Too_Long_Singular_Input")
+    void addNewUserIntoTableTooLongPasswordTest(){
+        AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
+        loginAsAdminTest(adminLoginPage);
+        clickAdminManagementPageLinkTest();
+        addNewUserTooLongPasswordTest();
+    }
+
 }

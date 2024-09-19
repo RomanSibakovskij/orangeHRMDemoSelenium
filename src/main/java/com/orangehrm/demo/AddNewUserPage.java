@@ -232,6 +232,23 @@ public class AddNewUserPage extends BasePage{
         passwordInputField.sendKeys(tooShortPassword);
     }
 
+    //input user data getter (invalid singular input)
+    public void inputNewUserTooLongPasswordData(){
+        employeeName = TestDataGenerator.getRandomEmployeeName();
+        username = TestDataGenerator.generateRandomUsername(6);
+        tooLongPassword = "Akg721sdsaddsasdqqwqwqwq123ASSDssafdsfgfdfhgdfQWEsssdssadasdwewe1"; //65 chars
+
+        System.out.println("Generated data for invalid new user: " + "\n");
+        logger.info("Employee name: " + employeeName);
+        logger.info("New username: " + username);
+        logger.info("Too long password: " + tooLongPassword);
+    }
+    public void inputTooLongPassword() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.visibilityOf(passwordInputField));
+        passwordInputField.sendKeys(tooLongPassword);
+    }
+
     //add new user click button methods
     public void clickCancelButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
