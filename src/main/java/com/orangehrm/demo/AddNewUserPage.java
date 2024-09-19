@@ -136,6 +136,23 @@ public class AddNewUserPage extends BasePage{
         usernameInputField.sendKeys(noUsername);
     }
 
+    //input user data getter (no singular input)
+    public void inputNewUserNoPasswordData(){
+        employeeName = TestDataGenerator.getRandomEmployeeName();
+        username = TestDataGenerator.generateRandomUsername(6);
+        noPassword = "";
+
+        System.out.println("Generated data for invalid new user: " + "\n");
+        logger.info("Employee name: " + employeeName);
+        logger.info("New username: " + username);
+        logger.info("No password: " + noPassword);
+    }
+    public void inputNoPassword() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.visibilityOf(passwordInputField));
+        passwordInputField.sendKeys(noPassword);
+    }
+
     //add new user click button methods
     public void clickCancelButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));

@@ -55,6 +55,7 @@ public class AdminUserManagementPageTest extends TestMethods{
     @Test
     @DisplayName("Add New User Into User Table - No Employee Name")
     @Tag("Invalid_Add_New_User_Into_User_Table")
+    @Tag("No_Singular_Input")
     void addNewUserIntoTableNoEmployeeNameTest(){
         AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
         loginAsAdminTest(adminLoginPage);
@@ -66,11 +67,24 @@ public class AdminUserManagementPageTest extends TestMethods{
     @Test
     @DisplayName("Add New User Into User Table - No Username")
     @Tag("Invalid_Add_New_User_Into_User_Table")
+    @Tag("No_Singular_Input")
     void addNewUserIntoTableNoUsernameTest(){
         AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
         loginAsAdminTest(adminLoginPage);
         clickAdminManagementPageLinkTest();
         addNewUserNoUsernameTest();
+    }
+
+    //Test 004g -> add a new user into the admin management user table test (no password) 
+    @Test
+    @DisplayName("Add New User Into User Table - No Password")
+    @Tag("Invalid_Add_New_User_Into_User_Table")
+    @Tag("No_Singular_Input")
+    void addNewUserIntoTableNoPasswordTest(){
+        AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
+        loginAsAdminTest(adminLoginPage);
+        clickAdminManagementPageLinkTest();
+        addNewUserNoPasswordTest();
     }
 
 }
