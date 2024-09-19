@@ -267,6 +267,27 @@ public class TestMethods extends BaseTest{
         logAvailableUserData(adminUserManagementPage);
     }
 
+    //search for page admins with enabled status test method
+    protected void searchForEnabledAdminsTest(AdminUserManagementPage adminUserManagementPage){
+        viewAdminManagementPageUserTableTest(adminUserManagementPage);
+        //click user role dropdown selector
+        adminUserManagementPage.clickUserRoleDropdownSelector();
+        //assert the admin role has indeed been selected //-> for some reason this assert refuses to work below select method
+        assertEquals("Admin", adminUserManagementPage.getSelectedAdminUserRole(), "The admin role hasn't been selected");
+        //select admin user role
+        adminUserManagementPage.selectAdminOption();
+        //click user status dropdown selector
+        adminUserManagementPage.clickStatusDropdownSelector();
+        //assert the enabled option has been selected //-> for some reason this assert refuses to work below select method
+        assertEquals("Enabled", adminUserManagementPage.getSelectedEnabledStatus(), "The enabled status isn't displayed");
+        //select enabled status option
+        adminUserManagementPage.selectEnabledOption();
+        //click search button
+        adminUserManagementPage.clickSearchUserButton();
+        //log user data after the search for confirmation
+        logAvailableUserData(adminUserManagementPage);
+    }
+
     //add new user test method
     protected void addNewUserTest(){
         AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);

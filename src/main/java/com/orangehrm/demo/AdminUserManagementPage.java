@@ -43,10 +43,16 @@ public class AdminUserManagementPage extends BasePage{
     private WebElement usernameSearchBar;
     @FindBy(xpath = "//div[@class='oxd-form-row']/div/div[2]")
     private WebElement userRoleDropdownSelector;
+    //admin option web element
+    @FindBy(xpath = "(//div[@role='listbox']//child::div)[2]")
+    private WebElement adminOption;
     @FindBy(xpath = "//div[@class='oxd-form-row']/div/div[3]")
     private WebElement employeeNameSearchBar;
     @FindBy(xpath = "//div[@class='oxd-form-row']/div/div[4]")
     private WebElement statusDropdownSelector;
+    //enabled status option web element
+    @FindBy(xpath = "(//div[@role='listbox']//child::div)[2]")
+    private WebElement enabledStatusOption;
     @FindBy(xpath = "//button[@class='oxd-button oxd-button--medium oxd-button--ghost']")
     private WebElement resetSearchButton;
     @FindBy(xpath = "//button[@type='submit']")
@@ -139,6 +145,36 @@ public class AdminUserManagementPage extends BasePage{
         addUserButton.click();
     }
 
+    //user role dropdown selector click method
+    public void clickUserRoleDropdownSelector() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(720));
+        wait.until(ExpectedConditions.elementToBeClickable(userRoleDropdownSelector));
+        userRoleDropdownSelector.click();
+    }
+    public void selectAdminOption() {adminOption.click();}
+
+    //user status dropdown selector
+    public void clickStatusDropdownSelector() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.elementToBeClickable(statusDropdownSelector));
+        statusDropdownSelector.click();
+    }
+    public void selectEnabledOption() {enabledStatusOption.click();}
+
+    //search user button click method
+    public void clickSearchUserButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.elementToBeClickable(searchButton));
+        searchButton.click();
+    }
+
+    //search user button click method
+    public void clickResetSearchUserButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.elementToBeClickable(resetSearchButton));
+        resetSearchButton.click();
+    }
+
     //admin user management page web element assert methods (table)
     public boolean isTableSelectUserCheckboxDisplayed() {
         for (WebElement element : userTableSelectUserCheckboxes) {
@@ -213,4 +249,8 @@ public class AdminUserManagementPage extends BasePage{
     public String getUserRemovalWarningBoxText(){return userRemovalWarningText.getText();}
     //user removal confirmation message text getter
     public String getUserRemovalConfirmationMessageText(){return userRemovalConfirmationMessage.getText();}
+
+    //user role/status getters
+    public String getSelectedAdminUserRole(){return adminOption.getText();}
+    public String getSelectedEnabledStatus(){return enabledStatusOption.getText();}
 }

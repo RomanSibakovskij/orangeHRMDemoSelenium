@@ -40,4 +40,16 @@ public class AdminUserManagementPageTest extends TestMethods{
         abortRemoveSelectedUserFromUserTableTest(adminUserManagementPage);
     }
 
+    //Test 005 -> search for admins with enabled status test
+    @Test
+    @DisplayName("Search For Admins with Enabled Status")
+    @Tag("Search_For_Admins")
+    void searchForEnabledAdminsTest(){
+        AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
+        loginAsAdminTest(adminLoginPage);
+        clickAdminManagementPageLinkTest();
+        AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
+        searchForEnabledAdminsTest(adminUserManagementPage);
+    }
+
 }
