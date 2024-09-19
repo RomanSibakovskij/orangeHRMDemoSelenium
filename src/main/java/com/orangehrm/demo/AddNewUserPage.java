@@ -20,7 +20,7 @@ public class AddNewUserPage extends BasePage{
     //enabled status option web element
     @FindBy(xpath = "(//div[@role='listbox']//child::div)[2]")
     private WebElement enabledStatusOption;
-    @FindBy(css = "div:nth-of-type(2) > .oxd-autocomplete-wrapper")
+    @FindBy(xpath = "//input[@placeholder='Type for hints...']")
     private WebElement employeeNameInputField;
     @FindBy(css = ".oxd-form .oxd-form-row:nth-of-type(1) [autocomplete]")
     private WebElement usernameInputField;
@@ -60,8 +60,8 @@ public class AddNewUserPage extends BasePage{
 
     //input user data getter
     public void inputNewUserData(){
-        employeeName = TestDataGenerator.generateRandomEmployeeName(9);
-        username = TestDataGenerator.generateRandomUsername(3);
+        employeeName = TestDataGenerator.getRandomEmployeeName();
+        username = TestDataGenerator.generateRandomUsername(6); //min 5 chars
         password = TestDataGenerator.generateRandomPassword();
 
         System.out.println("Generated data for new user: " + "\n");

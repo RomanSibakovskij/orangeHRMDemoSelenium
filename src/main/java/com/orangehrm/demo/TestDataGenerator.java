@@ -40,8 +40,21 @@ public class TestDataGenerator extends BasePage{
     public static String generateRandomUsername(int length) {
         return generateRandomString(UPPER + LOWER, length);
     }
-    public static String generateRandomEmployeeName(int length) {
-        return generateRandomString(UPPER + LOWER, length);
+    //first names
+    private static final String[] FIRST_NAMES = {
+            "John", "Jane", "Michael", "Sarah", "David", "Emma", "Robert", "Lisa", "Christopher", "Mary"
+    };
+    //last names
+    private static final String[] LAST_NAMES = {
+            "Smith", "Johnson", "Williams", "Brown", "Jones", "Miller", "Davis", "Wilson", "Moore", "Taylor"
+    };
+
+    // Randomizer method to generate full employee name
+    public static String getRandomEmployeeName() {
+        Random random = new Random();
+        String firstName = FIRST_NAMES[random.nextInt(FIRST_NAMES.length)];
+        String lastName = LAST_NAMES[random.nextInt(LAST_NAMES.length)];
+        return firstName + " " + lastName;
     }
 
     public static String generateRandomPassword() {

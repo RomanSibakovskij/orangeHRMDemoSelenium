@@ -40,7 +40,7 @@ public class AdminUserManagementPageTest extends TestMethods{
         abortRemoveSelectedUserFromUserTableTest(adminUserManagementPage);
     }
 
-    //Test 004d -> add a new user into the admin management user table test
+    //Test 004d -> add a new user into the admin management user table test (the new user WASN'T created)
     @Test
     @DisplayName("Add New User Into User Table")
     @Tag("Add_New_User_Into_User_Table")
@@ -48,7 +48,6 @@ public class AdminUserManagementPageTest extends TestMethods{
         AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
         loginAsAdminTest(adminLoginPage);
         clickAdminManagementPageLinkTest();
-        AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
         addNewUserTest();
     }
 

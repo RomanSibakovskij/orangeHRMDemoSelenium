@@ -2,6 +2,7 @@ package com.orangehrm.demo;
 
 import org.slf4j.*;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.*;
 
 public class TestMethods extends BaseTest{
 
@@ -283,11 +284,24 @@ public class TestMethods extends BaseTest{
         //input new user data
         addNewUserPage.inputNewUserData();
         addNewUserPage.inputUsername();
-//        addNewUserPage.inputEmployeeName(); //-> ElementNotInteractableException DESPITE correct selector
+        addNewUserPage.inputEmployeeName();
         addNewUserPage.inputPassword();
         addNewUserPage.inputConfirmPassword();
         //log new user data
         logNewUserData(addNewUserPage);
+        //click save button
+        addNewUserPage.clickAddNewUser();
+        //log updated user data (after the user creation)
+        logAvailableUserData(adminUserManagementPage);
+        //retrieve the list of employee names from the user management table
+        List<String> employeeNames = adminUserManagementPage.getTableEmployeeName();
+        //check if the new user appears in the list of employee names
+        String newEmployeeName = addNewUserPage.getEmployeeName();
+        if (!employeeNames.contains(newEmployeeName)) {
+            logger.error("The webpage didn't create a new user: " + newEmployeeName);
+        } else {
+            logger.info("New user created successfully: " + newEmployeeName);
+        }
     }
 
     //logger methods
