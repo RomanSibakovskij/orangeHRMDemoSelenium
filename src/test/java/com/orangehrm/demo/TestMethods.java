@@ -696,9 +696,43 @@ public class TestMethods extends BaseTest{
     }
 
     //personnel information page test methods
-    protected void searchForASpecificUserTest(PersonnelInformationManagementPage personnelInformationManagementPage){
+    protected void searchForASpecificUserWithInputTest(PersonnelInformationManagementPage personnelInformationManagementPage){
         //web element assert
         isPIMPageWebElementDisplayed(personnelInformationManagementPage);
+        //input searched user data getter
+        personnelInformationManagementPage.inputUserData();
+        //input searched user data
+        personnelInformationManagementPage.inputEmployeeName();
+        //input searched supervisor name
+        personnelInformationManagementPage.inputSupervisorName();
+        //input employee ID
+        personnelInformationManagementPage.inputEmployeeID();
+        //click job title selector
+        personnelInformationManagementPage.clickJobTitleSelector();
+        //assert the selected job title is selected // -> the assert throws NoSuchElementException despite VALID selector if thrown after select
+        assertEquals("Automaton Tester", personnelInformationManagementPage.getATJobTitleOptionText(), "The correct job title isn't selected");
+        //select 'automation tester' as a job title
+        personnelInformationManagementPage.selectATAsJobTitleOption();
+        //click employment status selector
+        personnelInformationManagementPage.clickEmploymentStatusSelector();
+        //assert the set employment status is selected // -> the assert throws NoSuchElementException despite VALID selector if thrown after select
+        assertEquals("Full-Time Permanent", personnelInformationManagementPage.getFullTimePermanentStatusOptionText(), "The correct employment status isn't selected");
+        //select full-time permanent status
+        personnelInformationManagementPage.selectFullTimePermanentStatusOption();
+        //click subunit selector
+        personnelInformationManagementPage.clickSubUnitSelector();
+        //assert the set subunit is selected // -> the assert throws NoSuchElementException despite VALID selector if thrown after select
+        assertEquals("OrangeHRM", personnelInformationManagementPage.getOrangeHRMOptionText(), "The correct sub unit isn't selected");
+        //select orangeHRM
+        personnelInformationManagementPage.selectOrangeHRMOption();
+        //click include selector
+        personnelInformationManagementPage.clickIncludeSelector();
+        //assert the set include option is selected // -> the assert throws NoSuchElementException despite VALID selector if thrown after select
+        assertEquals("Current and Past Employees", personnelInformationManagementPage.getCurrentAndPastEmployeesOptionText(), "The correct include option isn't selected");
+        //select 'current and past employees' option
+        personnelInformationManagementPage.selectCurrentAndPastEmployeesOption();
+        //click search button
+        personnelInformationManagementPage.clickSearchButton();
     }
 
     //logger methods

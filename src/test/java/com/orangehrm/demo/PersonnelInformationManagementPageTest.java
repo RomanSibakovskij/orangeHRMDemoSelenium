@@ -13,7 +13,7 @@ public class PersonnelInformationManagementPageTest extends TestMethods{
         loginAsAdminTest(adminLoginPage);
         clickPIMPageLinkTest();
         PersonnelInformationManagementPage personnelInformationManagementPage = new PersonnelInformationManagementPage(driver);
-        searchForASpecificUserTest(personnelInformationManagementPage);
+        searchForASpecificUserWithInputTest(personnelInformationManagementPage);
     }
 
 }

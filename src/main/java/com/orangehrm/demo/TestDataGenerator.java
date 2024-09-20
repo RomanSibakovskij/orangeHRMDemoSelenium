@@ -15,6 +15,12 @@ public class TestDataGenerator extends BasePage{
     private static String newPassword;
     private static String username;
     private static String employeeName;
+    //employee ID data
+    private static int employeeID;
+    //employee ID randomizer range variables
+    private static int minID = 100;
+    private static int maxID = 9999;
+    private static final Random randomEmployeeID = new SecureRandom();
 
     public TestDataGenerator(WebDriver driver) {
         super(driver);
@@ -91,9 +97,18 @@ public class TestDataGenerator extends BasePage{
 
         return password.toString();
     }
+    //employee ID random generator
+    public static int getRandomID() {
+        employeeID = randomEmployeeID.nextInt((maxID - minID) + 1) + minID;
+        return employeeID;
+    }
 
     //password getter
     public static String getNewPassword() {
         return newPassword;
+    }
+    //employee ID getter
+    public static int getEmployeeID(){
+        return employeeID;
     }
 }
