@@ -232,6 +232,19 @@ public class TestMethods extends BaseTest{
         assertEquals("Admin\n" + "User Management", adminDashBoardPage.getAdminDashboardPageTitle(), "The page title isn't displayed");
     }
 
+    //click 'PIM' page link test method
+    protected void clickPIMPageLinkTest(){
+        //assert the admin has logged into admin dashboard
+        AdminDashBoardPage adminDashBoardPage = new AdminDashBoardPage(driver);
+        assertEquals("Dashboard", adminDashBoardPage.getDashboardHeaderText(), "The dashboard header text isn't displayed"); //-> NoSuchElementException with CORRECT selector - it can be found on browser dev console
+        //web element assert
+        isAdminDashboardPageWebElementDisplayed(adminDashBoardPage);
+        //PIM page aside link click
+        adminDashBoardPage.clickPIMPageLink();
+        //assert the admin has navigated to admin management page
+        assertEquals("PIM", adminDashBoardPage.getAdminDashboardPageTitle(), "The page title isn't displayed");
+    }
+
     //view 'admin management' page user table data test method
     protected void viewAdminManagementPageUserTableTest(AdminUserManagementPage adminUserManagementPage){
         //web element assert
@@ -682,6 +695,12 @@ public class TestMethods extends BaseTest{
         logAvailableUserData(adminUserManagementPage);
     }
 
+    //personnel information page test methods
+    protected void searchForASpecificUserTest(PersonnelInformationManagementPage personnelInformationManagementPage){
+        //web element assert
+        isPIMPageWebElementDisplayed(personnelInformationManagementPage);
+    }
+
     //logger methods
     protected void logAvailableUserData(AdminUserManagementPage adminUserManagementPage){
         System.out.println("Available user data: " + "\n");
@@ -745,6 +764,8 @@ public class TestMethods extends BaseTest{
         assertTrue(adminDashBoardPage.isAdminDropdownMenuDisplayed(), "The admin dropdown menu is not displayed");
         //assert admin management page aside link is displayed
         assertTrue(adminDashBoardPage.isAdminManagementAsideLinkDisplayed(), "The aside 'admin management page' link isn't displayed");
+        //assert personnel information management page aside link is displayed
+        assertTrue(adminDashBoardPage.isPIMAsideLinkDisplayed(), "The PIM aside link isn't displayed");
     }
     //admin change password page web element assert
     protected void isAdminChangePasswordPageWebElementDisplayed(AdminChangePasswordPage adminChangePasswordPage){
@@ -809,4 +830,27 @@ public class TestMethods extends BaseTest{
         //assert add new user button is displayed(save)
         assertTrue(addNewUserPage.isAddNewUserButtonDisplayed(), "The 'add new user' button isn't displayed");
     }
+
+    //personnel information management page web element assert
+    protected void isPIMPageWebElementDisplayed(PersonnelInformationManagementPage personnelInformationManagementPage){
+        //assert employee name input field is displayed
+        assertTrue(personnelInformationManagementPage.isEmployeeNameInputFieldDisplayed(), "The employee name input field isn't displayed");
+        //assert supervisor name input field is displayed
+        assertTrue(personnelInformationManagementPage.isSupervisorNameInputFieldDisplayed(), "The supervisor name input field isn't displayed");
+        //assert employee ID input field is displayed
+        assertTrue(personnelInformationManagementPage.isEmployeeIDInputFieldDisplayed(), "The employee ID input field isn't displayed");
+        //assert job title dropdown selector is displayed
+        assertTrue(personnelInformationManagementPage.isJobTitleDropdownSelectorDisplayed(), "The job title dropdown selector isn't displayed");
+        //assert employment status dropdown selector is displayed
+        assertTrue(personnelInformationManagementPage.isEmploymentStatusDropdownSelectorDisplayed(), "The employment status dropdown selector isn't displayed");
+        //assert subunit dropdown selector is displayed
+        assertTrue(personnelInformationManagementPage.isSubUnitDropdownSelectorDisplayed(), "The subunit dropdown selector isn't displayed");
+        //assert include dropdown selector is displayed
+        assertTrue(personnelInformationManagementPage.isIncludeDropdownSelectorDisplayed(), "The 'include' dropdown selector isn't displayed");
+        //assert reset search button is displayed
+        assertTrue(personnelInformationManagementPage.isResetSearchButtonDisplayed(), "The 'reset' button isn't displayed");
+        //assert search button is displayed
+        assertTrue(personnelInformationManagementPage.isSearchButtonDisplayed(), "The 'search' button isn't displayed");
+    }
+
 }

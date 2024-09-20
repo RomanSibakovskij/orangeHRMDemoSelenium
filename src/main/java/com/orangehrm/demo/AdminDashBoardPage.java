@@ -23,6 +23,9 @@ public class AdminDashBoardPage extends BasePage{
     //admin dashboard aside links web elements
     @FindBy(xpath = "//ul[@class='oxd-main-menu']/li[1]")
     private WebElement adminManagementPageAsideLink;
+    //personnel information management page link aside web element
+    @FindBy(xpath = "//ul[@class='oxd-main-menu']/li[2]")
+    private WebElement pimPageAsideLink;
     //admin dashboard page title element
     @FindBy(xpath = "//span[@class='oxd-topbar-header-breadcrumb']")
     private WebElement adminDashboardPageTitle;
@@ -57,6 +60,13 @@ public class AdminDashBoardPage extends BasePage{
         adminManagementPageAsideLink.click();
     }
 
+    //personnel information management page link click method
+    public void clickPIMPageLink(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(600));
+        wait.until(ExpectedConditions.elementToBeClickable(pimPageAsideLink));
+        pimPageAsideLink.click();
+    }
+
     //admin dashboard header getter
     public String getDashboardHeaderText(){return dashboardHeader.getText();}
 
@@ -66,5 +76,6 @@ public class AdminDashBoardPage extends BasePage{
     //admin dashboard web element asserts
     public boolean isAdminDropdownMenuDisplayed(){return adminDropdownMenu.isDisplayed();}
     public boolean isAdminManagementAsideLinkDisplayed(){return adminManagementPageAsideLink.isDisplayed();}
+    public boolean isPIMAsideLinkDisplayed(){return pimPageAsideLink.isDisplayed();}
 
 }

@@ -42,12 +42,23 @@ public class TestDataGenerator extends BasePage{
     }
     //first names
     private static final String[] FIRST_NAMES = {
-            "John", "Jane", "Michael", "Sarah", "David", "Emma", "Robert", "Lisa", "Christopher", "Mary"
+            "John", "Jane", "Michael", "Sarah", "David", "Emma", "Robert", "Lisa", "Christopher", "Mary",
+            "William", "Olivia", "James", "Sophia", "Benjamin", "Isabella", "Alexander", "Mia", "Henry", "Amelia",
+            "Daniel", "Evelyn", "Matthew", "Abigail", "Joseph", "Emily", "Samuel", "Avery", "Jackson", "Ella",
+            "Lucas", "Scarlett", "Mason", "Grace", "Ethan", "Chloe", "Logan", "Sofia", "Owen", "Aubrey",
+            "Elijah", "Zoey", "Oliver", "Hannah", "Isaac", "Victoria", "Nathan", "Lily", "Sebastian", "Zoe",
+            "Caleb", "Aria", "Aiden", "Lucy", "Wyatt", "Savannah"
     };
+
     //last names
     private static final String[] LAST_NAMES = {
-            "Smith", "Johnson", "Williams", "Brown", "Jones", "Miller", "Davis", "Wilson", "Moore", "Taylor"
+            "Smith", "Johnson", "Williams", "Brown", "Jones", "Miller", "Davis", "Wilson", "Moore", "Taylor",
+            "Anderson", "Thomas", "Jackson", "White", "Harris", "Martin", "Thompson", "Garcia", "Martinez", "Robinson",
+            "Clark", "Rodriguez", "Lewis", "Lee", "Walker", "Hall", "Allen", "Young", "King", "Wright",
+            "Scott", "Green", "Baker", "Adams", "Nelson", "Carter", "Mitchell", "Perez", "Roberts", "Turner",
+            "Phillips", "Campbell", "Parker", "Evans", "Edwards", "Collins", "Stewart", "Sanchez", "Morris", "Rogers"
     };
+
 
     // Randomizer method to generate full employee name
     public static String getRandomEmployeeName() {
