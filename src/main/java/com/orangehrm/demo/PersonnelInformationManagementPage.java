@@ -1,21 +1,31 @@
 package com.orangehrm.demo;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindBy;
 
 public class PersonnelInformationManagementPage extends BasePage{
 
     //PIM page input field web elements
+    @FindBy(css = "[class] .oxd-grid-item--gutters:nth-of-type(1) [placeholder]")
     private WebElement employeeNameInputField;
+    @FindBy(css = "[class] .oxd-grid-item--gutters:nth-of-type(5) [placeholder]")
     private WebElement supervisorNameInputField;
+    @FindBy(css = "[class] .oxd-grid-item--gutters:nth-of-type(2) input")
     private WebElement employeeIDInputField;
     //PIM page dropdown selector web elements
+    @FindBy(xpath = "(//div[@class='oxd-select-wrapper'])[2]")
     private WebElement jobTitleDropdownSelector;
+    @FindBy(css = "[class] .oxd-grid-item--gutters:nth-of-type(3) .oxd-select-wrapper")
     private WebElement employmentStatusDropdownSelector;
+    @FindBy(xpath = "(//div[@class='oxd-select-wrapper'])[3]")
     private WebElement subUnitDropdownSelector;
+    @FindBy(xpath = "(//div[@class='oxd-select-wrapper'])[1]")
     private WebElement includeDropdownSelector;
     //reset search button
+    @FindBy(xpath = "//button[@type='reset']")
     private WebElement resetSearchButton;
     //search button
+    @FindBy(xpath = "//button[@type='submit']")
     private WebElement searchButton;
 
     public PersonnelInformationManagementPage(WebDriver driver) {
