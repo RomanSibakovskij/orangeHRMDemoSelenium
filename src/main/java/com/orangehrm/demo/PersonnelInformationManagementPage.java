@@ -4,7 +4,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import java.util.*;
 import java.time.Duration;
 
 public class PersonnelInformationManagementPage extends BasePage{
@@ -43,6 +43,22 @@ public class PersonnelInformationManagementPage extends BasePage{
     //search button
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement searchButton;
+
+    //employee list web elements
+    @FindBy(xpath = "(//div[@role='cell'])[2]")
+    private List<WebElement> employeeIDListElements;
+    @FindBy(xpath = "(//div[@role='cell'])[3]")
+    private List<WebElement> firstAndMiddleNameListElements;
+    @FindBy(xpath = "(//div[@role='cell'])[4]")
+    private List<WebElement> lastNameListElements;
+    @FindBy(xpath = "(//div[@role='cell'])[5]")
+    private List<WebElement> jobTitleListElements;
+    @FindBy(xpath = "(//div[@role='cell'])[6]")
+    private List<WebElement> employmentStatusListElements;
+    @FindBy(xpath = "(//div[@role='cell'])[7]")
+    private List<WebElement> subUnitListElements;
+    @FindBy(xpath = "(//div[@role='cell'])[8]")
+    private List<WebElement> supervisorListElements;
 
     //input data
     private String employeeName;
@@ -126,6 +142,57 @@ public class PersonnelInformationManagementPage extends BasePage{
         searchButton.click();
     }
 
+    //PIM page table list data getters
+    public List<String> getTableEmployeeID() {
+        List<String> employeeID = new ArrayList<>();
+        for (WebElement element : employeeIDListElements) {
+            employeeID.add(element.getText());
+        }
+        return employeeID;
+    }
+    public List<String> getTableFirstAndMiddleName() {
+        List<String> firstAndMiddleName = new ArrayList<>();
+        for (WebElement element : firstAndMiddleNameListElements) {
+            firstAndMiddleName.add(element.getText());
+        }
+        return firstAndMiddleName;
+    }
+    public List<String> getTableLastName() {
+        List<String> lastName = new ArrayList<>();
+        for (WebElement element : lastNameListElements) {
+            lastName.add(element.getText());
+        }
+        return lastName;
+    }
+    public List<String> getTableJobTitle() {
+        List<String> jobTitle = new ArrayList<>();
+        for (WebElement element : jobTitleListElements) {
+            jobTitle.add(element.getText());
+        }
+        return jobTitle;
+    }
+    public List<String> getTableEmploymentStatus() {
+        List<String> employmentStatus = new ArrayList<>();
+        for (WebElement element : employmentStatusListElements) {
+            employmentStatus.add(element.getText());
+        }
+        return employmentStatus;
+    }
+    public List<String> getTableSubUnit() {
+        List<String> subUnit = new ArrayList<>();
+        for (WebElement element : subUnitListElements) {
+            subUnit.add(element.getText());
+        }
+        return subUnit;
+    }
+    public List<String> getTableSupervisor() {
+        List<String> supervisor = new ArrayList<>();
+        for (WebElement element : supervisorListElements) {
+            supervisor.add(element.getText());
+        }
+        return supervisor;
+    }
+
     //PIM page web assert methods
     public boolean isEmployeeNameInputFieldDisplayed() {return employeeNameInputField.isDisplayed();}
     public boolean isSupervisorNameInputFieldDisplayed() {return supervisorNameInputField.isDisplayed();}
@@ -136,6 +203,64 @@ public class PersonnelInformationManagementPage extends BasePage{
     public boolean isIncludeDropdownSelectorDisplayed() {return includeDropdownSelector.isDisplayed();}
     public boolean isResetSearchButtonDisplayed() {return resetSearchButton.isDisplayed();}
     public boolean isSearchButtonDisplayed() {return searchButton.isDisplayed();}
+
+    //PIM page user table web element assert methods
+    public boolean isTableEmployeeIDDisplayed() {
+        for (WebElement element : employeeIDListElements) {
+            if (!element.isDisplayed()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean isTableFirstAndMiddleNameDisplayed() {
+        for (WebElement element : firstAndMiddleNameListElements) {
+            if (!element.isDisplayed()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean isTableLastNameDisplayed() {
+        for (WebElement element : lastNameListElements) {
+            if (!element.isDisplayed()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean isTableJobTitleDisplayed() {
+        for (WebElement element : jobTitleListElements) {
+            if (!element.isDisplayed()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean isTableEmploymentStatusDisplayed() {
+        for (WebElement element : employmentStatusListElements) {
+            if (!element.isDisplayed()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean isTableSubUnitDisplayed() {
+        for (WebElement element : subUnitListElements) {
+            if (!element.isDisplayed()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean isTableSupervisorDisplayed() {
+        for (WebElement element : supervisorListElements) {
+            if (!element.isDisplayed()) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     //selector option getters
     public String getATJobTitleOptionText() {return atJobOption.getText();}
